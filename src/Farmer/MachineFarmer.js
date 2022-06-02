@@ -2,26 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import Skeleton from 'react-loading-skeleton';
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import SideBarFarmer from './SideBarFarmer'
+import axios from '../api/axios';
 
 const MachineFarmer = () => {
-    let navigate = useNavigate();
     const { id } = useParams();
     const [machines, setMachines] = useState([]);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
+    const getProduct = async () => {
+        setLoading(true);
+        const {data} = await axios.get(`/machines/${id}`);
+        console.log(data);
+        setMachines(data);
+        setLoading(false);
+    }
 
     useEffect(() => {
-        const getProduct = async () => {
-            setLoading(true);
-            const response = await fetch(`http://localhost:8000/api/machine/${id}`);
-            setMachines(await response.json());
-            setLoading(false);
-        }
         getProduct();
     }, []);
 
+    function deleteMachine(id) {
+        axios.delete(`/machines/${id}`, {
+        }).then((response) => {
+            console.log(response.data)
+        })
+        navigate(`/buy`);
+    }
     const Loading = () => {
         return (
-
             <>
                 <div className="col-md-6">
                     <Skeleton height={400} />
@@ -37,61 +48,64 @@ const MachineFarmer = () => {
                 </div>
 
             </>
-
         )
     }
     const ShowProduct = () => {
         return (
             <>
-                {/* <div className="col-md-6">
-                    <img src={machines.image} alt={machines.title} className="img-fluid" />
-                </div> */}
-                <div className="col-md-12">
-                    <h1 className="display-5 font-bold mb-2">{machines.name}</h1>
-                    <h5 className="text-uppercase text-black-50">
-                        {machines.fetures}
-                    </h5>
-                    <p className="lead fw-bold">
-                        Weight : {machines.details && machines.details.weight}
-                        <i className="fa fa-star"></i>
-                    </p>
-                    <p className="lead fw-bold">
-                        Length :{machines.details && machines.details.lenght}
-                        <i className="fa fa-star"></i>
-                    </p>
-                    <h3 className="display-6 fw-bold my-4">
-                       Price : {machines.price}₹
-                    </h3>
-                    <h3 className="display-6 fw-bold my-4">
-                       Discount : {machines.discount}%
-                    </h3>
-                    <p className="card-text">Warrennty:{machines.warrenty}</p>
-                    <p className="card-text">Guarantee:{machines.guarantee}</p>
-                    <p className="lead">{machines.description}</p>
-                    <button className="btn btn-outline-dark px-4 py-2">
-                        Add to cart
-                    </button>
-                    {/* <NavLink to="/d" className="btn btn-dark ms-2 px-3 py-2">
-                        Edit
-                    </NavLink> */}
+                <div className="container-fluid">
+                    <div className="row justify-content-evenly">
+                        <div className="col-md-6 mt-3">
+                            <img src={machines.image} alt={machines.name} className="img-fluid" style={{height:400,width:400}} />
+                        </div>
+                        <div className="col-md-5">
+                            <h1 className="display-5 font-bold mb-2">{machines.name}</h1>
+                            {/* <h5 className="text-uppercase text-black-50">
+                                {machines.fetures}
+                            </h5> */}
+                            <p className="lead fw-bold">
+                                Weight : {machines.details && machines.details.weight}kg
+                                {/* <i className="fa fa-star"></i> */}
+                            </p>
+                            <p className="lead fw-bold">
+                                Length :{machines.details && machines.details.length}mm
+                                {/* <i className="fa fa-star"></i> */}
+                            </p>
+                            <h3 className="display-6 fw-bold my-4">
+                                Price : {machines.sell_price}₹
+                            </h3>
+                            <h3 className="display-6 fw-bold my-4">
+                                Discount : {machines.discount}%
+                            </h3>
+                            <p className="card-text">Warranty:{machines.warranty}</p>
+                            <p className="card-text">Guarantee:{machines.guarantee}</p>
+                            <p className="lead">{machines.description}</p>
+                            <button className="btn btn-outline-dark px-4 py-2" onClick={() => deleteMachine(machines.id)}>
+                                Delete
+                            </button>
+                            <NavLink to="/d" className="btn btn-dark ms-2 px-3 py-2">
+                                Edit
+                            </NavLink>
+                        </div>
+                    </div>
                 </div>
+
             </>
         )
     }
 
     return (
         <div>
-            <div className="container py-5 bg-secondary bg-opacity-10">
+            <div className="container py-5 ">
                 <div className="row py-4 justify-content-evenly" >
-                    <div className="col-md-9">
+                    <div className="col-md-3">
+                        <SideBarFarmer />
+                    </div>
+                    <div className="col-md-9" style={{marginLeft:250}}>
                         {loading ? <Loading /> : <ShowProduct />}
                     </div>
-
                 </div>
             </div>
-            <div className='BackBox'>
-                      <button className='btn btn-primary' onClick={()=>{navigate('/homepagefarmer')}}>Go To Home</button>
-                    </div>
         </div>
     );
 }

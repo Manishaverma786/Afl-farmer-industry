@@ -1,41 +1,123 @@
-import React, { Component } from 'react'
-import SideNavBar from './SideNavBar';
+import React, { useState } from "react";
+import SideBarFarmer from "./SideBarFarmer";
+import axios from '../api/axios';
+import { useNavigate } from 'react-router-dom';
 
-export class Profile extends Component {
-  render() {
-    return (
-        <div style={{background: 'rgb(248,248,255)'}}>
-          <div className="container-fluid" style={{"height": "100%"}}>
-          <div id="wrapper">
-      
-      <SideNavBar />
-        <div className="row">
-            <div className="col text-center" style={{"margin-top": "103px"}}>
-                <div className='mb-5'><img className="img-fluid border rounded-circle shadow" src="assets/img/User_New.png"/></div><button className="btn btn-primary" type="button">Change Image</button></div>
-            <div className="col-lg-5 col-xl-5" style={{"background": "#ffffff","min-height": "888px"}}>
-                <h2 className="text-center mb-5" style={{"margin-top": "57px"}}>Edit Profile</h2>
-                <form className="text-center" style={{"padding": "68px"}}>
-                    <div className="form-group text-left"><label>User Name</label><input className="form-control" type="text" style={{"border-radius":"25px"}} name="UserName" placeholder="UserName"/></div>
-                    <div className="form-group text-left"><label>Email</label><input className="form-control" type="text" style={{"border-radius":"25px"}} name="Email" placeholder="Email"/></div>
-                    <div className="form-group text-left"><label>Mobile</label><input className="form-control" type="text" style={{"border-radius":"25px"}} name="Mobile" placeholder="Mobile"/></div>
-                    <div className="form-group text-left"><label>Sign-up as</label><select className="form-control" style={{"border-radius":"25px"}}><optgroup label="Profile Type"><option value="" selected="">Farmer</option><option value="">Industrialist</option></optgroup></select></div>
-                    <br></br>
-                    <button className="btn btn-primary btn-block mb-5" type="button" >Update My Account</button>
-                </form>
-                <div>
-                    {/* <h6>Or Sign-up with</h6>
-                    <div className="text-center"><button className="btn btn-primary m-5" type="button" style={{"border-radius":"25px"}}>Save</button><button className="btn btn-primary m-5" type="button" style={{"border-radius":"25px"}}>Edit&nbsp;<i className="fa fa-pencil" style={{"margin-left": "8px"}}></i></button>
-                        <button className="btn btn-primary m-5" type="button" style={{"border-radius":"25px"}}>Share&nbsp;<i className="fa fa-share-alt ml-2"></i></button>
-                    </div> */}
-                    <div className="text-right" style={{"margin-right": "50px"}}><img src="assets/img/AFL.jpg" style={{"width": "108px"}}/></div>
-                </div>
-            </div>
-        </div>
-    </div>
-      </div>
-      </div>
-    )
+function Profile() {
+  const history = useNavigate();
+  const [username, setUsername] = useState([]);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [location, setLocation] = useState("");
+  const [is_industry, setIs_industry] = useState(false);
+  const formData = new FormData();
+
+  async function profile(e) {
+    e.preventDefault();
+    let formdata = {
+      username: username,
+      name: name,
+      phone: phone,
+      location: location,
+      is_industry: false,
+    };
+
+    for (const [key, value] of Object.entries(formdata)) {
+      formData.append(key, value);
+      console.log(key, value);
+    }
+
+    let { data } = await axios.patch("profile/", formData);
+    console.log("data", data);
+    localStorage.setItem("machine_info", JSON.stringify(data));
+    history(`/homepagefarmer`);
   }
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-md-3">
+          <SideBarFarmer />
+          
+        </div>
+
+        <div className="col-md-9 mt-5">
+          <div className="col-sm-8 offset-sm-2" style={{ margintop: 100 }}>
+            <h1 className="py-3">Edit Profile</h1>
+            <form onSubmit={profile}>
+            <label htmlFor="colFormLabel" className="col-1 mt-1 fw-bolder">
+                Username:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                value={username}
+                placeholder="username"
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <label htmlFor="colFormLabel" className="col-1 mt-1 fw-bolder">
+                Name:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                value={name}
+                placeholder="name"
+                onChange={(e) => setName(e.target.value)}
+              />
+              <label
+                htmlFor="colFormLabel"
+                className="col-sm-3 col-form-label mt-2 fw-bolder"
+              >
+                Phone:
+              </label>
+              <textarea
+                type="tel"
+                className="form-control"
+                value={phone}
+                placeholder="phone"
+                onChange={(e) => setPhone(e.target.value)}
+              />
+            
+              <label
+                htmlFor="colFormLabel"
+                className="col-sm-3 col-form-label mt-2 fw-bolder"
+              >
+                Location:
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                value={location}
+                placeholder="location"
+                onChange={(e) => setLocation(e.target.value)}
+              />
+              
+            <div className="col-sm-8">
+            <label fhtmlFor="colFormLabel"
+                className="col-sm-3 col-form-label mt-2 fw-bolder">
+              Industry:
+            </label>
+           
+              <input
+                className="form-check-input mt-4" style={{ "width":"1.2rem","height":"1.2rem"}}
+                type="checkbox"
+                value={is_industry}
+                onChange={(e) => setIs_industry(e.target.checked)}
+                id="flexCheckDefault"
+              />
+            </div>
+              
+              
+              <br />
+              <button type="submit" className="btn btn-primary">
+                Update my Profile
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Profile
+export default Profile;

@@ -1,0 +1,44 @@
+.footerTable {
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .header-left {
+    flex: 1;
+  }
+  
+  #rowsPerPage {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    color: #4f4f4f;
+  }
+  
+  .footerRow {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #footerItem1 {
+    margin-right: 52px;
+  }
+  
+  #dropIcon {
+    margin: 0px 4px;
+    cursor: pointer;
+  }
+  
+  #leftIcon {
+    margin: 0px 8px;
+    cursor: pointer;
+  }
+  
+  #rightIcon {
+    margin: 0px 8px;
+    cursor: pointer;
+  }
+  

@@ -13,10 +13,11 @@ export class SideNavBar extends Component {
                 <br></br>
               {/* <Link to="/profile"><button className="btn btn-primary m-5" type="button" style={{"border-radius":"25px"}}>Edit Profile&nbsp;<i className="fa fa-pencil" style={{"margin-left": "8px"}}></i></button></Link> */}
               <Link class="text-white" to="/homepagefarmer"><i class="fa fa-pie-chart mr-3"></i>Home</Link>
-              <Link class="text-white" to="/buy"><i class="fa fa-pie-chart mr-3"></i>Products</Link>
+              <Link class="text-white" to="/buy"><i class="fa fa-plus-circle mr-3"></i>Products</Link>
               <Link class="text-white" to="/sellresidue"><i class="fa fa-calendar-o mr-3"></i> Sell Residue</Link>
               <Link class="text-white" to="/connection"><i class="fa fa-users mr-3"></i>Connections</Link>
               <Link class="text-white" to="/settings"><i class="fa fa-gear mr-3"></i>Settings</Link>
+              <Link class="text-white" to="/"><i class="fa fa-sign-out mr-3"></i>Exit</Link>
               </li>
               <li> </li>
               <li> </li>

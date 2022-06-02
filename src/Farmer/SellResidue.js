@@ -1,43 +1,49 @@
-import React, { Component } from 'react'
-import SideNavBar from './SideNavBar'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import './NewStyleFile/globalstyle.css'
 import { residue } from '../actions/userActions';
 import residueimg from '../Farmer/assets/residueimg.jpeg';
+import SideBarFarmer from './SideBarFarmer'
+import axios from '../api/axios';
 
+function SellResidue() {
+  const history = useNavigate();
+  const [type_of_residue, setTypeofresidue] = useState([]);
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const formData = new FormData();
+  
+  async function residues(e) {
+    e.preventDefault();
+    let formdata = {
+      type_of_residue: type_of_residue,
+      price:price,
+      quantity: quantity,
+    };
 
-const SellResidue = () => {
-  let navigate = useNavigate();
-  const [inputValues, setInputValues] = React.useState({
-    type_of_residue: "",
-    price: "",
-    quantity: "",
-  });
+    for (const [key, value] of Object.entries(formdata)) {
+      formData.append(key, value);
+      console.log(key, value);
+    }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setInputValues({
-      ...inputValues,
-      [name]: value,
-    });
-  };
-  const handleSell = () => {
-    const res = residue(inputValues);
-    res.then(function (result) {
-      console.log(result.data);
-    });
-    // navigate('/homepagefarmer');
-  };
+    let { data } = await axios.post("residues/", formData);
+    console.log("data", data);
+    localStorage.setItem("machine_info", JSON.stringify(data));
+    history(`/residuedetails`);
+  }
 
   return (
     <>
 
       <div className='sellResidueWrapper' style={{ background: "rgb(248,248,255)" }}>
         <div className="container-fluid" style={{ height: "100%" }}>
-          <SideNavBar />
+          <div id="wrapper">
+          <SideBarFarmer/>
+          </div>
+          
           <div className="row">
             <div className="col text-center align-self-center">
-              <img className="img-fluid" src={residueimg} style={{ width: "700px", height: "600px", marginLeft: "100px" }} />
+              <img className="img-fluid" src={residueimg} style={{ width: "500px", height: "500px", marginLeft: "200px", marginBottom: "200px" }} />
             </div>
             <div
               className="col-lg-5 col-xl-5"
@@ -45,69 +51,56 @@ const SellResidue = () => {
             >
               <h2
                 className="text-center"
-                style={{ "margin-top": "126px", "margin-bottom": "83px" }}
+                style={{ "margin-top": "126px" }}
               >
                 Sell Residue
               </h2>
-              <form className="text-center" style={{ padding: "68px" }}>
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    type="text"
-                    style={{ "border-radius": "25px" }}
-                    value={inputValues.type_of_residue}
-                    onChange={handleChange}
-                    name="type_of_residue"
-                    placeholder="Type of residue"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    type="text"
-                    style={{ "border-radius": "25px" }}
-                    value={inputValues.quantity}
-                    onChange={handleChange}
-                    name="quantity"
-                    placeholder="Quantity"
-                  />
-                </div>
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    type="text"
-                    style={{ "border-radius": "25px" }}
-                    value={inputValues.price}
-                    onChange={handleChange}
-                    name="price"
-                    placeholder="Price"
-                  />
-                </div>
+              <form onSubmit={residues} style={{ padding: "68px" }}>
+                
+              <label htmlFor="colFormLabel" className="col-1 mt-1 fw-bolder">
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                value={type_of_residue}
+                placeholder="Type of Residue"
+                onChange={(e) => setTypeofresidue(e.target.value)}
+              />
+                <label htmlFor="colFormLabel" className="col-1 mt-1 fw-bolder">
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                value={quantity}
+                placeholder="Quantity"
+                onChange={(e) => setQuantity(e.target.value)}
+              />
+                <label htmlFor="colFormLabel" className="col-1 mt-1 fw-bolder">
+              </label>
+              <input
+                type="number"
+                className="form-control"
+                value={price}
+                placeholder="Price"
+                onChange={(e) => setPrice(e.target.value)}
+              />
                 <br></br>
-                <Link to=''>
+                
                   <button
                     className="btn btn-info btn-lg"
-                    type="button" style={{ "backgroundColor": "#172578", "color": "white" }}
-                    onClick={handleSell}
+                    type="submit" style={{ "backgroundColor": "#172578", "color": "white" }}
+                    
                   >
                     {" "}
                     Add Residue
                   </button>
-                </Link>
+                  </form>
+             
                 <br></br>
-              </form>
-              {/* <div>
-                <div className="text-right" style={{ "margin-right": "50px" }}>
-                  <img src="assets/img/AFL.jpg" style={{ width: "108px", marginTop: "170px" }} />
-                </div>
-              </div> */}
+              
+              
             </div>
           </div>
-        </div>
-
-
-        <div className='BackBox'>
-          <button className='btn btn-primary' onClick={() => { navigate('/homepagefarmer') }}>Go To Home</button>
         </div>
       </div>
 

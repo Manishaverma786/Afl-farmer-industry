@@ -23,6 +23,8 @@ import Profile from './Farmer/Profile'
 import Rent from './Farmer/Rent'
 import Request from './Farmer/Request';
 import Settings from './Farmer/Settings'
+import AddNewMachine from './Farmer/AddNewMachine'
+import RentMachines from './Farmer/RentMachines'
 
 
 function App() {
@@ -55,8 +57,10 @@ function App() {
       <Route path="machine/:id" element={<MachineFarmer />} />
       <Route path="profile" element={<Profile />} />
       <Route path="rent" element={<Rent />} />
+      <Route path="addnewmachine" element={<AddNewMachine />} />
+      <Route path="rentmachines" element={<RentMachines />} />
       <Route path="settings" element={<Settings />} />
-      <Route path="request" element={<Request />} />
+      <Route path="requestfarmer" element={<Request />} />
 
       </Routes>
     </Router>

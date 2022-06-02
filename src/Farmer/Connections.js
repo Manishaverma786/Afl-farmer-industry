@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
-// import NewNavbar from './NewNavbar';
-// import Navbar from './Navbar'
-import SideNavBar from './SideNavBar'
-
+import SideBarFarmer from './SideBarFarmer'
 export class Connections extends Component {
     
     render() {
         return (
             <div>
-                {/* <Navbar /> */}
-                {/* <NewNavbar /> */}
+            
                 <div id="wrapper">
 
-                    <SideNavBar />
+                <SideBarFarmer />
 
                     <div className="page-content-wrapper pt-3">
                         
                         <div className="container-fluid pt-3">
-                        <h2 style={{"textAlign":"center", "color": "#172578"}}> Connections</h2><br></br><br></br>
+                        <h2 style={{"textAlign":"center", "color": "#172578"}}> Connections</h2><br></br>
                         
                         <div className='row my-3'>
                         <div className='col-12'>

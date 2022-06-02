@@ -1,0 +1,36 @@
+ .div1{
+     font-size: 1.2rem;
+     font-weight: 400;
+ }
+ #signup{
+     font-size: 1.4rem;
+     margin-bottom: 1.2rem;
+     text-align: center;
+ }
+ 
+ .form-check-input mt-4{
+     width: 1.2rem;
+     height: 1.2rem;
+ }
+ #img{
+     background-color: #F7F9FF;
+ }
+ 
+ 
+ @media screen and (max-width:600px ) {
+    .self{
+        display: block;
+        font-size: 18px;
+        height: 70px;
+    }
+    
+
+}
+@media screen and (min-width:600px ) {
+    #btn{
+        margin-right: 30px;
+    }
+
+}
+
+ 

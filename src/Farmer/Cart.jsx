@@ -1,13 +1,13 @@
 import React from 'react'
 
-import SideNavBar from './SideNavBar'
+import SideBarFarmer from './SideBarFarmer'
 
 const Cart = () => {
   return (
     <>
 
 
-<SideNavBar/>
+<SideBarFarmer/>
 
 
 <div className=' cart1'>
@@ -276,5 +276,4 @@ const Cart = () => {
     </>
   )
 }
-
-export default Cart
+export default Cart;

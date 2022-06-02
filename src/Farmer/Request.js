@@ -13,7 +13,9 @@ const Request = () => {
         axios.get("residue-orders/")
             .then(response => {
                 const requestList = response.data;
+                console.log(requestList)
                 setRequest(requestList)
+
             });
     }
     useEffect(() => {

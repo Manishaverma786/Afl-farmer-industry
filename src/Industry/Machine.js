@@ -29,7 +29,7 @@ const Machine = () => {
         }).then((data) => {
             console.warn(data)
         })
-        getProduct();
+        // getProduct();
         navigate(`/machinelist`);
     }
 

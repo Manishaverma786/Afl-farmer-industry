@@ -1,21 +1,46 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import setting from '../Farmer/assets/settings-icon.png';
-import SideNavBar from "./SideNavBar";
+import SideBarFarmer from './SideBarFarmer'
 import { Link } from "react-router-dom";
+import axios from '../api/axios';
+import { useNavigate } from 'react-router-dom';
  
 
-export class Settings extends Component {
-  render() {
+function Settings() {
+  const history = useNavigate();
+  const [old_password, setOldPassword] = useState([]);
+  const [new_password1, setNewPassword1] = useState("");
+  const [new_password2, setNewPassword2] = useState("");
+  const formData = new FormData();
+
+  async function settings(e) {
+    e.preventDefault();
+    let formdata = {
+      old_password: old_password,
+      new_password1: new_password1,
+      new_password2: new_password2,
+    };
+
+    for (const [key, value] of Object.entries(formdata)) {
+      formData.append(key, value);
+      console.log(key, value);
+    }
+
+    let { data } = await axios.patch("/users/change-password", formData);
+    console.log("data", data);
+    localStorage.setItem("machine_info", JSON.stringify(data));
+    history(`/loginfarmer`);
+  }
     return (
       <div>
-        {/* <Navbar /> */}
-        {/* <NewNavbar/> */}
+        
         <div id="wrapper">
-          <SideNavBar />
+          <SideBarFarmer />
           <div className="text-right" style={{ "margin-right": "50px" }}>
+            <br></br>
             <img
               src={setting}
-              style={{ width: "200px", "marginRight": "50px" }}
+              style={{ width: "200px", "marginRight": "180px" }}
             />
           </div>
 
@@ -76,6 +101,7 @@ export class Settings extends Component {
               </div>
 
               {/* open password change model */}
+             
               <div
                 class="modal fade"
                 id="changePassword"
@@ -86,7 +112,7 @@ export class Settings extends Component {
               >
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header"><br></br><br></br><br></br>
                       <h5 class="modal-title" id="changePasswordLabel">
                         Change Password
                       </h5>
@@ -100,15 +126,18 @@ export class Settings extends Component {
                       </button>
                     </div>
                     <div class="modal-body">
-                      <form>
+                      <form onSubmit={settings}>
                         <div class="form-group">
                           <label for="recipient-name" class="col-form-label">
                             Current Password:
                           </label>
                           <input
-                            type="text"
+                            type="password"
+                            value={old_password}
+                            placeholder="Current Password"
                             class="form-control"
                             id="recipient-name"
+                            onChange={(e) => setOldPassword(e.target.value)}
                           />
                         </div>
 
@@ -117,9 +146,12 @@ export class Settings extends Component {
                             New Password:
                           </label>
                           <input
-                            type="text"
+                            type="password"
+                            value={new_password1}
+                            placeholder="New Password"
                             class="form-control"
                             id="recipient-name"
+                            onChange={(e) => setNewPassword1(e.target.value)}
                           />
                         </div>
 
@@ -128,37 +160,42 @@ export class Settings extends Component {
                             Confirm Password:
                           </label>
                           <input
-                            type="text"
+                            type="password"
+                            value={new_password2}
+                            placeholder="Confirm Password"
                             class="form-control"
                             id="recipient-name"
+                            onChange={(e) => setNewPassword2(e.target.value)}
                           />
                         </div>
-                      </form>
-                    </div>
+                      
+                  
                     <div class="modal-footer">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >
-                        Cancel
-                      </button>
-                      <button type="button" class="btn btn-primary">
+                      <button type="submit" class="btn btn-primary">
                         Update
                       </button>
                     </div>
+                    
+                  
+                  </form>
                   </div>
+                  </div>
+                  
                 </div>
               </div>
+              
             </div>
+            
           </div>
+          
         </div>
+        
         {/* <div className="text-right" style={{ "margin-right": "50px" }}>
           <img src="assets/img/AFL.jpg" style={{ width: "108px" }} />
         </div> */}
       </div>
+    
     );
   }
-}
 
 export default Settings;

@@ -1,95 +1,61 @@
-import React, { useEffect , useState} from 'react'
-import { useParams } from 'react-router';
-import SideNavBar from './SideNavBar'
+import SideBarFarmer from './SideBarFarmer'
+import React, { useEffect, useState } from 'react';
+import axios from '../api/axios';
 
 const ResidueDetails = () => {
 
-    const { id } = useParams();
-    const [residue, setResidue] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [residues, setResidue] = useState([]);
 
+    const fetchData = () => {
+        axios.get("residues")
+            .then(response => {
+                console.log("residues list", response.data);
+                setResidue(response.data);
+            });
+    }
     useEffect(() => {
-        const getResidue = async () => {
-            setLoading(true);
-            const response = await fetch(`http://127.0.0.1:8000/api/residue/8`);
-            setResidue(await response.json());
-            console.log(residue)
-        }
-        getResidue();
+        fetchData();
+
     }, []);
-  
-        return (
-            <div>
-               
-                <div id="wrapper" >
-
-                    <SideNavBar />
-
-                    <div className="page-content-wrapper ">
-                        <div className="container-fluid ">
-                            <div className="row">
-                                <div className="col">
-                                    <h3 style={{"color":"#172578",}}>Residue Details</h3><br></br>
-                                </div>
-                                
-                            </div>
-                        </div>
-                       
-                        <div className="container-fluid ">
-                <div className="row">
-                    <div className="col">
-                        <div>
-                            <div className="container">
-                            <div className="row">
-                                    <div className="col-6">
-                                        <div className="card">
-                                            <div className="card-body">
-                                            <div className='text-center'>
-                                                                
-                                                                <img src="assets/img/residue.jpeg" style={{"width":"100%","height":"100%",}} />
-                                                                
-                                                            </div>
-                                                <div className="table-responsive">
-                                                    <table className="table">
-                                                        <thead>
-                                                       
-                                                            <tr>
-                                                                <th colspan="2">Residue</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Price</td>
-                                                                <td>{residue.price}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Type</td>
-                                                                <td>{residue.type_of_residue}</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Quantity</td>
-                                                                <td>{residue.quantity}</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                                </div>
-                        </div>
+    return (
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-md-4">
+                    <SideBarFarmer />
+                </div>
+                <div className="col-md-6">
+                    <h1 className='text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds' style={{ marginTop: 100, color: "#172578 "}}>Residues</h1>
+                </div>
+                <div className="row ">
+                    <div className="col-md-9" style={{marginLeft:300}}>
+                        <table className="table table-hover p-3">
+                            <thead>
+                                <tr className="table p-3" style={{"backgroundColor":"#172578","color":"white"}}>
+                                    <th scope="col">id</th>
+                                    <th scope="col">Type Of residue</th>
+                                    <th scope="col">Quantity(kg)</th>
+                                    <th scope="col">Price(₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody className=''>
+                                {
+                                    residues.map((residue, i) =>
+                                        <tr key={i} >
+                                            <td>{residue.id}</td>
+                                            <td>{residue.type_of_residue}</td>
+                                            <td>{residue.quantity}</td>
+                                            <td>{residue.price}</td>
+                                        </tr>
+                                    )
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+
             </div>
-                    </div>
-                </div>
-                <div className="text-right" style={{ "margin-right": "50px" }}>
-                  <img src="assets/img/AFL.jpg" style={{ width: "108px" }} />
-                </div>
-            </div>
-        )
+        </div>
+    )
 }
 
-export default ResidueDetails;
+export default ResidueDetails

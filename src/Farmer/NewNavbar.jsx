@@ -2,20 +2,20 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './NewStyleFile/newnavbar.css'
 import { Link, useNavigate } from 'react-router-dom';
+import shoppingcarticon from '../Farmer/assets/shoppingcarticon.png';
 
 const NewNavbar = () => {
     let navigate = useNavigate()
   return (<>
   
   
-  <div className='navbarWrapper'>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="navbar-brand" onClick={()=>{navigate('/home')}} > <img src='assets/img/AFL.jpg' alt='img' /> </div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div className='navbarWrapper' style={{ "height": "50px"}}>
 
-  <div class="page-content-wrapper pt-3"> 
+  {/* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button> */}
+
+  {/* <div class="page-content-wrapper pt-3"> 
       <div class="container-fluid pt-3">
             <div class="row">
                 <div class="col">
@@ -33,15 +33,23 @@ const NewNavbar = () => {
 
               
             
-          </div>
-    <div className='profileBox' style={{'marginRight':'500px'}}>  <a onClick={()=>{navigate('/cart')}} ><i class="fa fa-shopping-cart mr-3"></i> </a>
+          </div> */}
+    {/* <div className='profileBox' style={{'marginRight':'500px'}}>  <a onClick={()=>{navigate('/cart')}} ><i class="fa fa-shopping-cart mr-3"></i> </a>
     
-  </div>
+  </div> */}
 
   
 
- 
-</nav>
+<span><img style={{width: "105px"}} src='assets/img/AFL.jpg' alt='img' /> </span>
+
+                    <Link to="/cart">
+                      {" "}
+                      <img
+                        src= {shoppingcarticon}
+                        style={{ width: "50px", textAlign: "right",marginLeft:"1000px"}}
+                      />{" "}
+                    </Link>
+                  
   </div>
   
   </>)
