@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import axios from '../api/axios';
-
+import SideBarFarmer from "./SideBarFarmer";
 const Request = () => {
     const [request, setRequest] = useState([])
     const [filter, setFilter] = useState("pending")
@@ -67,6 +67,7 @@ const Request = () => {
             <div className="container py-5 ">
                 <div className="row py-4 justify-content-evenly" >
                     <div className="col-12">
+                        <SideBarFarmer />
                     </div>
                 </div>
                 <div className="row ">

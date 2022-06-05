@@ -29,7 +29,7 @@ const MachineFarmer = () => {
         }).then((response) => {
             console.log(response.data)
         })
-        navigate(`/buy`);
+        navigate(`/rentmachines`);
     }
     const Loading = () => {
         return (

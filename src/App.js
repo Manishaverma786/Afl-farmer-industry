@@ -20,11 +20,11 @@ import Cart from './Farmer/Cart'
 import Connections from './Farmer/Connections'
 import MachineFarmer from './Farmer/MachineFarmer'
 import Profile from './Farmer/Profile'
-import Rent from './Farmer/Rent'
 import Request from './Farmer/Request';
 import Settings from './Farmer/Settings'
 import AddNewMachine from './Farmer/AddNewMachine'
 import RentMachines from './Farmer/RentMachines'
+import MoreDetailsIndustryList from './Farmer/MoreDetailsIndustryList';
 
 
 function App() {
@@ -56,11 +56,12 @@ function App() {
       <Route path="connection" element={<Connections/>} />
       <Route path="machine/:id" element={<MachineFarmer />} />
       <Route path="profile" element={<Profile />} />
-      <Route path="rent" element={<Rent />} />
       <Route path="addnewmachine" element={<AddNewMachine />} />
       <Route path="rentmachines" element={<RentMachines />} />
       <Route path="settings" element={<Settings />} />
       <Route path="requestfarmer" element={<Request />} />
+      <Route path="moredetails/:id" element={<MoreDetailsIndustryList />} />
+
 
       </Routes>
     </Router>
