@@ -1,85 +1,92 @@
-import React, {useRef, useCallback, useState } from "react";
-import "./RequestPage.css";
-import SideBar from '../SideBar';
-import RequestListItem from "../RequestListItem/RequestListItem";
-import RequestListHeader from "../RequestListHeader/RequestListHeader";
-import {acceptedItemListArr, pendingItemListArr} from './RequestPageData';
+import React, { useState, useEffect, useMemo } from 'react'
+import './RequestPage.css'
+import axios from '../../api/axios'
+import SideBar from '../SideBar'
 
-function RequestPage() {
-  const myContainer1 = useRef(null);
-  const myContainer2 = useRef(null);
+const Request = () => {
+  const [request, setRequest] = useState([])
+  const [filter, setFilter] = useState("pending")
 
-  const handleBlockClick = useCallback(
-    (id) => () => {
-      if (id === 1) {
-        setList('Pending')
-        myContainer1.current.classList.add("active");
-        myContainer2.current.classList.remove("active");
-      } else {
-        setList('Accepted')
-        myContainer2.current.classList.add("active");
-        myContainer1.current.classList.remove("active");
-      }
-    },
-    []
-  );
- 
-  const [List , setList] = useState('Pending')
+  var filterdata = useMemo(() => {
+    return request.filter((x) => x.status === filter);
+  }, [filter, request])
 
-  return (
-   
-    <div className="homepage">
-       <SideBar/>
-      <div className="main_layout">
+  const requests = () => {
+    axios.get("orders")
+      .then(response => {
+        const orderList = response.data;
+        console.log('orderlist', orderList)
+        setRequest(orderList)
+      }).catch(e => {
+        console.log(e);
+    });
+  }
+  useEffect(() => {
+    requests();
+  }, []);
 
-        <div className="blocks">
-          <div
-            className="active"
-            id="1"
-            onClick={handleBlockClick(1)}
-            ref={myContainer1}
-          >
-            <p id="buyersText">Pending Request</p>
-            <p id="buyersAmt">{pendingItemListArr.length}</p>
-          </div>
-          <div id="2" onClick={handleBlockClick(2)} ref={myContainer2}>
-            <p id="buyersText">Accepted Request</p>
-            <p id="buyersAmt">{acceptedItemListArr.length}</p>
-          </div>
+  const acceptOrReject = (id, status) => {
+    axios.patch(`orders/${id}`, {
+      status
+    }).then(() => requests())
+
+  }
+
+
+  const ShowOrders = () => {
+    return (
+      <>
+        <div className="buttons d-flex justify-content-center mb-1 mt-3 pb-5">
+          {/* <button type="button" class="btn btn-outline-dark me-2" onClick={() => setFilter("All")}>All</button> */}
+          <button type="button" class="btn btn-outline-dark me-2" onClick={() => setFilter("pending")}>Pending</button>
+          <button type="button" class="btn btn-outline-dark me-2" onClick={() => setFilter("accepted")}>Accepted</button>
+          <button type="button" class="btn btn-outline-dark me-2" onClick={() => setFilter("rejected")}> Rejected</button>
         </div>
-
-
-        <div className="table">
-
-          <div className="table_list">
-            <RequestListHeader />
-            {List === 'Pending' && pendingItemListArr.map((value, index)=>(
-                <RequestListItem 
-                    key={index}
-                    cusId={value.cusId} 
-                    cusImg={value.cusImg} 
-                    cusName={value.cusName} 
-                    update={value.update} 
-                    machineName={value.machineName}
-                    status={value.status}
-                />
-            ))}
-            {List === 'Accepted' && acceptedItemListArr.map((value, index)=>(
-                <RequestListItem 
-                    key={index}
-                    cusId={value.cusId} 
-                    cusImg={value.cusImg} 
-                    cusName={value.cusName} 
-                    update={value.update} 
-                    machineName={value.machineName}
-                    status={value.status}
-                />
-            ))}  
+        {
+          filterdata.map((data, i) =>
+            <div className="col-md-4 mb-4 mt-2 ">
+              <div className="card h-40 text-center py-3 px-2" style={{ "width": "18rem" }} key={i}>
+                <img src={data.machine.image} className="card-img-top" alt={data.machine.name} height="200px" />
+                <div class="card-body">
+                {/* <img src={data.machine.image} className="card-img-top" alt={data.machine.name} height="200px" /> */}
+                  <h5 class="card-title mb-0">{data.machine.name}</h5>
+                  <h5 class="card-title mb-0">Price : {data.machine.sell_price}</h5>
+                  {/* <h5 class="card-title mb-0"> {data.machine.rent_price}</h5> */}
+                  <p className="card-text mb-0">Customer: {data.customer.username} </p>
+                  <h6 class="card-title"> Quantity:{data.quantity}</h6>
+                  {data.status === "pending" &&
+                    <>
+                      <div class="btn btn-dark px-3 mt-1" onClick={() => { acceptOrReject(data.id, "accepted") }}>Accept</div>
+                      <div class="btn btn-dark px-3 mt-1" style={{ marginLeft: 10 }} onClick={() => { acceptOrReject(data.id, "rejected") }}>Reject</div>
+                    </>
+                  }
+                </div>
+              </div>
+            </div>
+          )
+        }
+      </>
+    )
+  }
+  return (
+    <>
+      <div className="container">
+        <div className="row py-4 justify-content-evenly" >
+          <div className="col-md-4">
+            <SideBar />
+          </div>
+          <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
+            <h1 className='text-center border border-1 p-4  shadow p-3 mt-3 mb-5 bg-body roundeds' style={{ marginTop: 100, color: "#172578 " }}>Requests</h1>
+          </div>
+          <div className="row">
+            <div className="col-md-9" style={{ marginLeft: 250 }}>
+              <div className="row justify-content-center">{<ShowOrders />}</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
-export default RequestPage;
+export default Request;

@@ -59,26 +59,13 @@ const MachineFarmer = () => {
                             <img src={machines.image} alt={machines.name} className="img-fluid" style={{height:400,width:400}} />
                         </div>
                         <div className="col-md-5">
-                            <h1 className="display-5 font-bold mb-2">{machines.name}</h1>
-                            {/* <h5 className="text-uppercase text-black-50">
-                                {machines.fetures}
-                            </h5> */}
-                            <p className="lead fw-bold">
-                                Weight : {machines.details && machines.details.weight}kg
-                                {/* <i className="fa fa-star"></i> */}
-                            </p>
-                            <p className="lead fw-bold">
-                                Length :{machines.details && machines.details.length}mm
-                                {/* <i className="fa fa-star"></i> */}
-                            </p>
+                            <h1 className="display-5 font-bold mb-2">{machines.name}</h1> 
                             <h3 className="display-6 fw-bold my-4">
-                                Price : {machines.sell_price}₹
+                                Price : {machines.rent_price}₹
                             </h3>
                             <h3 className="display-6 fw-bold my-4">
                                 Discount : {machines.discount}%
                             </h3>
-                            <p className="card-text">Warranty:{machines.warranty}</p>
-                            <p className="card-text">Guarantee:{machines.guarantee}</p>
                             <p className="lead">{machines.description}</p>
                             <button className="btn btn-outline-dark px-4 py-2" onClick={() => deleteMachine(machines.id)}>
                                 Delete
