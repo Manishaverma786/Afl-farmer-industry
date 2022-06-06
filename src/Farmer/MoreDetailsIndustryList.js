@@ -60,12 +60,8 @@ const MoreDetailsIndustryList = () => {
                         </div>
                         <div className="col-md-5">
                             <h1 className="display-5 font-bold mb-2">{machines.name}</h1>
-                            {/* <h5 className="text-uppercase text-black-50">
-                                {machines.fetures}
-                            </h5> */}
                             <p className="lead fw-bold">
                                 Weight : {machines.details && machines.details.weight}kg
-                                {/* <i className="fa fa-star"></i> */}
                             </p>
                             <p className="lead fw-bold">
                                 Length :{machines.details && machines.details.length}mm
