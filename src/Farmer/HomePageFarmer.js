@@ -1,5 +1,7 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useCallback,useMemo,useState } from "react";
 import './HomePageFarmer.css';
+import { useNavigate } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 import SideBarFarmer from './SideBarFarmer'
 import sort from "../Industry/Images/sort.png";
 import filter from "../Industry/Images/filter.png";
@@ -7,73 +9,132 @@ import BuyerListItem from "./BuyerListItem/BuyerListItem";
 import BuyerListItemHeader from "./BuyerListItemHeader/BuyerListItemHeader";
 import BuyerListFooter from "./BuyerListFooter/BuyerListFooter";
 import { Link } from 'react-router-dom';
+import axios from "../api/axios";
 
-function HomePageFarmer() {
-  const myContainer1 = useRef(null);
-  const myContainer2 = useRef(null);
+const HomePageFarmer=() =>{
+  const history = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [machines, setMachines] = useState([]);
+  const [filter, setFilter] = useState("for_sale=true");
 
-  const handleBlockClick = useCallback(
-    (id) => () => {
-      if (id === 1) {
-        myContainer1.current.classList.add("active");
-        myContainer2.current.classList.remove("active");
-      } else {
-        myContainer2.current.classList.add("active");
-        myContainer1.current.classList.remove("active");
-      }
-    },
-    []
-  );
+  var filterdata = useMemo(() => {
+    return machines.filter((x) => x.status === filter);
+  }, [filter, machines]);
 
-  return (
-    <div>
-      <SideBarFarmer/>
-    <div className="Homepagei">
-      <div className="main_layout">
-        <div className="blocks">
-          <div
-            className="active"
-            id="1"
-            onClick={handleBlockClick(1)}
-            ref={myContainer1}
+  const machine = () => {
+    axios.get("machines/").then((response) => {
+      const machineList = response.data;
+      console.log(machineList);
+      setMachines(machineList);
+      setLoading(true);
+      setLoading(false);
+    });
+  };
+  useEffect(() => {
+    machine();
+  }, []);
+  const Loading = () => {
+    return (
+      <>
+        <div className="col-md-4">
+          <Skeleton height={350} />
+        </div>
+        <div className="col-md-4">
+          <Skeleton height={350} />
+        </div>
+        <div className="col-md-4">
+          <Skeleton height={350} />
+        </div>
+      </>
+    );
+  };
+  function handleClick(id) {
+    history(`/moredetails/${id}`);
+  }
+
+
+  const ShowProducts = () => {
+    return (
+      <>
+        <div className="buttons d-flex justify-content-center mb-5 pb-5">
+          {/* <button type="button" class="btn btn-outline-dark me-2" onClick={() => setFilter("All")}>All</button> */}
+          <button
+            type="button"
+            class="btn btn-outline-dark me-2"
+            onClick={() => setFilter("for_sale=true")}
           >
-           <Link to ="/buy"> <p id="buyersText">Available Machines</p></Link>
-            {/* <p id="buyersAmt">60</p> */}
-          </div>
-          <div id="2" onClick={handleBlockClick(2)} ref={myContainer2}>
-            <Link to ="/residuedetails"><p id="buyersText">Available Residue</p></Link>
-            {/* <p id="buyersAmt">4</p> */}
+            For sale
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-dark me-2"
+            onClick={() => setFilter("for_rent=true")}
+          >
+            For rent
+          </button>
+          
+        </div></>
+        );
+  }
+  {filterdata.map((machines) => {
+    return (
+      <>
+        <div className="col-md-4 mb-4 mt-3 ">
+          <div className="card h-100 text-center py-4" key={machines.id}>
+            <img
+              src={machines.image}
+              className="card-img-top"
+              alt={machines.name}
+              height="200px"
+            />
+            <div class="card-body">
+              <h5 class="card-title mb-0">
+                {machines.name.substring(0, 12)}
+              </h5>
+              <p class="card-text lead fw-bold">
+                {machines.sell_price}₹ {machines.id}
+              </p>
+              <p className="card-text">
+                {machines.description.substring(0, 20)}...
+              </p>
+              <div class="btn btn-primary"> Add to Cart</div>
+              <br></br>
+              <br></br>
+              <div
+                class="btn btn-primary"
+                onClick={() => {
+                  handleClick(machines.id);
+                }}
+              >
+                {" "}
+                more details
+              </div>
+            </div>
           </div>
         </div>
-        <div className="table">
-          <div className="table_header">
-            <p id="tableName">Buyers</p>
-            <div className="sortFilter">
-              <img src={sort}></img>
-              <p>Sort</p>
-            </div>
-            <div className="sortFilter">
-              <img src={filter}></img>
-              <p>Filter</p>
-            </div>
-          </div>
-          <div className="table_list">
-            <BuyerListItemHeader />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListFooter />
-          </div>
-        </div>
+      </>
+    );
+  })}
+
+
+return (
+<div>
+<div className="container py-5 mt-4">
+  <div className="row">
+    <div className="col-3">
+      <SideBarFarmer />
+    </div>
+    <div className="col-9 mb-5">
+      <h1 className="display-6 fw-bolder text-center" style={{"color":"#172578"}}>Machines List</h1>
+      <hr />
+      <div className="row justify-content-center">
+        {loading ? <Loading /> : <ShowProducts />}
       </div>
     </div>
-    </div>
-  );
+  </div>
+</div>
+</div>
+);
 }
 
 export default HomePageFarmer;
