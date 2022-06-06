@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import { useNavigate } from "react-router-dom";
 import SideBarFarmer from "./SideBarFarmer";
@@ -93,6 +94,23 @@ const RentMachines = () => {
             <hr />
             <div className="row justify-content-center">
               {loading ? <Loading /> : <ShowProducts />}
+              <Link to="/addnewmachine">
+              <button
+                className="btn btn-info btn-lg"
+                style={{
+                  position: "absolute",
+                  backgroundColor: "#172578",
+                  color: "white",
+                  margintop: "150px",
+                  left: "50%",
+                  "-ms-transform": "translate(-50%, -50%)",
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                {" "}
+                Add New Machine
+              </button>
+            </Link>
             </div>
           </div>
         </div>

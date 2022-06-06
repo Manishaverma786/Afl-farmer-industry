@@ -1,16 +1,17 @@
 import SideBarFarmer from "./SideBarFarmer";
-import { useParams } from 'react-router';
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 
 const ResidueDetails = () => {
-    const { id } = useParams();
+  const { id } = useParams();
   const [residues, setResidue] = useState([]);
   const navigate = useNavigate();
 
-  const fetchData = () => {
+  const fetchData = async ()  => {
+
     axios.get("residues").then((response) => {
       console.log("residues list", response.data);
       setResidue(response.data);
@@ -19,13 +20,14 @@ const ResidueDetails = () => {
   useEffect(() => {
     fetchData();
   }, []);
-//   function deleteResidue(id) {
-//     axios.delete(`/residues/${id}`, {
-//     }).then((response) => {
-//         console.log(response.data)
-//     })
-//     navigate(`/residuedetails`);
-// }
+    function deleteResidue(id) {
+      axios.delete(`/residues/${id}`, {
+      }).then((response) => {
+          console.log(response.data)
+      })
+      navigate(`/residuedetails`);
+      fetchData();
+  }
   const ShowResidue = () => {
     return (
       <>
@@ -40,9 +42,9 @@ const ResidueDetails = () => {
                 <h5 class="card-title mb-0">{residue.type_of_residue}</h5>
                 <h6 class="card-title mb-0"> Quantity: {residue.quantity}</h6>
                 <p class="card-text lead fw-bold">{residue.price}₹ </p>
-                {/* <button className="btn btn-outline-dark px-4 py-2" onClick={() => deleteResidue(residues.id)}>
+                <button className="btn btn-outline-dark px-4 py-2" onClick={() => deleteResidue(residue.id)}>
                                 Delete
-                            </button> */}
+                            </button>
                 {/* <div class="btn btn-primary" onClick={() => { createorder(residue.id) }}>Buy</div> */}
               </div>
             </div>
@@ -68,7 +70,23 @@ const ResidueDetails = () => {
         <div className="row ">
           <div className="col-md-9 mt-2" style={{ marginLeft: 300 }}>
             <div className="row justify-content-center">{<ShowResidue />}</div>
-           
+            <Link to="/sellresidue">
+              <button
+                className="btn btn-info btn-lg"
+                style={{
+                  position: "absolute",
+                  backgroundColor: "#172578",
+                  color: "white",
+                  margintop: "150px",
+                  left: "50%",
+                  "-ms-transform": "translate(-50%, -50%)",
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                {" "}
+                Add Residue
+              </button>
+            </Link>
           </div>
         </div>
       </div>
