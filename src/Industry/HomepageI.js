@@ -1,77 +1,31 @@
-import React, { useEffect, useRef, useCallback } from "react";
+import React, { useEffect, useRef, useCallback, useState } from "react";
 import './HomePagei.css';
 import SideBar from './SideBar'
-import sort from "../Industry/Images/sort.png";
-import filter from "../Industry/Images/filter.png";
-import BuyerListItem from "./BuyerListItem/BuyerListItem";
-import BuyerListItemHeader from "./BuyerListItemHeader/BuyerListItemHeader";
-import BuyerListFooter from "./BuyerListFooter/BuyerListFooter";
+import Request from './RequestPage/RequestPage'
+import Residue from './Residue'
 
 function Homepagei() {
-  const myContainer1 = useRef(null);
-  const myContainer2 = useRef(null);
-
-  const handleBlockClick = useCallback(
-    (id) => () => {
-      if (id === 1) {
-        myContainer1.current.classList.add("active");
-        myContainer2.current.classList.remove("active");
-      } else {
-        myContainer2.current.classList.add("active");
-        myContainer1.current.classList.remove("active");
-      }
-    },
-    []
-  );
+  const [active, setActive] = useState('Request')
 
   return (
-    <div>
-      <SideBar/>
-    <div className="Homepagei">
-      <div className="main_layout">
-        <div className="blocks">
-          <div
-            className="active"
-            id="1"
-            onClick={handleBlockClick(1)}
-            ref={myContainer1}
-          >
-            <p id="buyersText">Buyers</p>
-            <p id="buyersAmt">60</p>
+    <>
+      <div className="container">
+        <div className="row py-4 justify-content-evenly" >
+          <div className="col-md-6 col-sm-12">
+            <h1 className='text-center border border-1 p-4  shadow p-3 mt-3 mb-5 bg-body roundeds' onClick={() => setActive("Request") } style={{ marginTop: 100, color: "#172578 " }}
+            >Requests</h1>
           </div>
-          <div id="2" onClick={handleBlockClick(2)} ref={myContainer2}>
-            <p id="buyersText">Available Machines</p>
-            <p id="buyersAmt">16</p>
+          <div className="col-md-6 col-sm-12">
+            <h1 className='text-center border border-1 p-4  shadow p-3 mt-3 mb-5 bg-body roundeds' onClick={() => setActive("Residue")} style={{ marginTop: 100, color: "#172578 " }}
+            >Residue</h1>
           </div>
-        </div>
-        <div className="table">
-          <div className="table_header">
-            <p id="tableName">Buyers</p>
-            <div className="sortFilter">
-              <img src={sort}></img>
-              <p>Sort</p>
+          <div>
+              {active == "Request" && <Request />}
+              {active == "Residue" && <Residue />}
             </div>
-            <div className="sortFilter">
-              <img src={filter}></img>
-              <p>Filter</p>
-            </div>
-          </div>
-          <div className="table_list">
-            <BuyerListItemHeader />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListItem />
-            <BuyerListFooter />
-          </div>
         </div>
       </div>
-    </div>
-    </div>
+    </>
   );
 }
 

@@ -1,9 +1,9 @@
 import SideBar from './SideBar';
 import React, { useEffect, useState } from 'react';
-import axios from '../api/axios'; 
+import axios from '../api/axios';
 
-const Residue = () => {
-
+const Residue = ({title}) => {
+    
     const [residues, setResidues] = useState([]);
 
     const fetchData = () => {
@@ -48,21 +48,14 @@ const Residue = () => {
         )
     }
     return (
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-md-4">
-                    <SideBar />
-                </div>
-                <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
-                    <h1 className='text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds' style={{ marginTop: 100 }}>Residues</h1>
-                </div>
-                <div className="row ">
-                    <div className="col-md-9 mt-2" style={{ marginLeft: 300 }}>
-                        <div className="row justify-content-center">{<ShowResidue />}</div>
-                    </div>
+        <>
+            <div className="container">
+                <div className="row py-4 justify-content-evenly" >
+                    <h1 className='text-center border border-1 py-4  shadow p-4 mt-3 mb-5 bg-body roundeds' style={{ marginTop: 100, color: "#172578 " }}>{title}</h1>
+                    <div className="row justify-content-center">{<ShowResidue />}</div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -25,11 +25,13 @@ import Settings from './Farmer/Settings'
 import AddNewMachine from './Farmer/AddNewMachine'
 import RentMachines from './Farmer/RentMachines'
 import MoreDetailsIndustryList from './Farmer/MoreDetailsIndustryList';
+import Layout from './Industry/Layout';
 
 
 function App() {
   return (
     <Router>
+      <Layout>
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route path="/blogs" element={<Blogs />} />
@@ -42,8 +44,8 @@ function App() {
         <Route path="machines/:id" element={<Machine />} />
         <Route path="addmachine" element={<AddMachine />} />
         <Route path="connections" element={<Connection />} />
-        <Route path="requestpage" element={<RequestPage />} />
-        <Route path="residues" element={<Residue/>} />
+        <Route path="requestpage" element={<RequestPage title="Requests"/>} />
+        <Route path="residues" element={<Residue title ="Residue"/>} />
         <Route path='/prefillform' element={<Prefillform/>} />
         
       {/* Farmer */} 
@@ -61,9 +63,8 @@ function App() {
       <Route path="settings" element={<Settings />} />
       <Route path="requestfarmer" element={<Request />} />
       <Route path="moredetails/:id" element={<MoreDetailsIndustryList />} />
-
-
       </Routes>
+      </Layout>
     </Router>
   );
 }

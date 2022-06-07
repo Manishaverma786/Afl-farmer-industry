@@ -161,7 +161,7 @@ export default function SideBar({ children }) {
     return (
         <div className={classes.root}>
             {/* app bar */}
-            <AppBar
+            {/* <AppBar
                 position="fixed"
                 className={classes.appBar}
                 elevation={0}
@@ -179,7 +179,7 @@ export default function SideBar({ children }) {
                         : null
                     }
                 </Toolbar>
-            </AppBar >
+            </AppBar > */}
 
             {/* side drawer */}
             < Drawer

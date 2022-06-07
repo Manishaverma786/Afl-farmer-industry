@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import "./Connection.css";
 import axios from "../../api/axios";
-import SideBar from '../SideBar';
+
  
 
 const Connection = () => {
@@ -26,7 +26,7 @@ const Connection = () => {
             {
                 connections.map((data, i) =>
                     <div className="col-md-4 mb-4 mt-3 ">
-                        <div className="card h-40 text-center py-3" style={{ "width": "18rem" }} key={i}>
+                        <div className="card h-100 text-center py-3" style={{ "width": "18rem" }} key={i}>
                             <div className="card-body">
                                 <h5 className="card-title mb-0 fw-bolder">{data.name.toUpperCase()}</h5>
                                 <h6 className="card-title mb-0"> {data.email}</h6>
@@ -41,21 +41,14 @@ const Connection = () => {
     )
 }
   return (
-    <div className="container-fluid">
-        <div className="row">
-            <div className="col-md-4">
-                <SideBar />
-            </div>
-            <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
-                <h1 className='text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds' style={{ marginTop: 100 }}>Connections</h1>
-            </div>
-            <div className="row ">
-                <div className="col-md-9 mt-2" style={{ marginLeft: 300 }}>
-                    <div className="row justify-content-center">{<ShowConnections/>}</div>
-                </div>
-            </div>
+    <>
+      <div className="container">
+        <div className="row py-4 justify-content-evenly" >
+          <h1 className='text-center border border-1 py-4  shadow p-4 mt-3 mb-5 bg-body roundeds' style={{ marginTop: 100, color: "#172578 " }}>Connections</h1>
+            <div className="row justify-content-center">{<ShowConnections />}</div>
         </div>
-    </div>
+      </div>
+    </>
 )
 }
 

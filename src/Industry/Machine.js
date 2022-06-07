@@ -100,18 +100,14 @@ const Machine = () => {
     }
 
     return (
-        <div>
-            <div className="container py-5 ">
+        <>
+            <div className="container">
                 <div className="row py-4 justify-content-evenly" >
-                    <div className="col-md-3">
-                        <SideBar />
-                    </div>
-                    <div className="col-md-9" style={{ marginLeft: 250 }}>
-                        {loading ? <Loading /> : <ShowProduct />}
-                    </div>
+                    <div className="row justify-content-center"> {loading ? <Loading /> : <ShowProduct />}</div>
                 </div>
             </div>
-        </div>
+        </>
+
     );
 }
 
