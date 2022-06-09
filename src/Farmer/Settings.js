@@ -36,18 +36,15 @@ function Settings() {
         
         <div id="wrapper">
           <SideBarFarmer />
-          <div className="text-right" style={{ "margin-right": "50px" }}>
-            <br></br>
-            <img
-              src={setting}
-              style={{ width: "200px", "marginRight": "180px" }}
-            />
           </div>
+          <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
+                        <h1 className='text-center border border-1 p-4  shadow p-3 mt-3 mb-5 bg-body roundeds' style={{ marginTop: 100, color: "#172578 " }}>Settings</h1>
+                    </div>
 
           <div className="page-content-wrapper pt-2">
             <div
               class="container-fluid pt-2"
-              style={{ "padding-left": "60px" }}
+              style={{ "padding-left": "60px", "marginLeft": "300px" }}
             >
               <div class="row" style={{ "margin-bottom": "5px" }}>
                 <div
@@ -190,10 +187,8 @@ function Settings() {
           
         </div>
         
-        {/* <div className="text-right" style={{ "margin-right": "50px" }}>
-          <img src="assets/img/AFL.jpg" style={{ width: "108px" }} />
-        </div> */}
-      </div>
+        
+   
     
     );
   }

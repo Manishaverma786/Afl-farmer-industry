@@ -83,40 +83,74 @@ const RentMachines = () => {
   };
 
   return (
-    <div>
-      <div className="container py-5 mt-4">
-        <div className="row">
-          <div className="col-3">
+    <>
+      <div className="container">
+        <div className="row py-4 justify-content-evenly">
+          <div className="col-md-4">
             <SideBarFarmer />
           </div>
-          <div className="col-9 mb-5">
-            <h1 className="display-6 fw-bolder text-center" style={{"color":"#172578"}}>Machines List</h1>
-            <hr />
-            <div className="row justify-content-center">
-              {loading ? <Loading /> : <ShowProducts />}
-              <Link to="/addnewmachine">
+        
+        <br></br>
+        <br></br>
+        <br></br>
+        <div>
+        <Link to="/addnewmachine">
               <button
                 className="btn btn-info btn-lg"
                 style={{
                   position: "absolute",
                   backgroundColor: "#172578",
                   color: "white",
-                  margintop: "150px",
-                  left: "50%",
+                  marginBottom: "500px",
+                  left: "85%",
                   "-ms-transform": "translate(-50%, -50%)",
                   transform: "translate(-50%, -50%)",
                 }}
               >
                 {" "}
-                Add New Machine
+                Add Machine
               </button>
             </Link>
+            </div>
+          <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
+            <h1
+              className="text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds"
+              style={{ marginTop: 50, color: "#172578 " }}
+            >
+              My Products
+            </h1>
+          </div>
+          <div className="row">
+            <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
+              <div className="row justify-content-center">
+                {loading ? <Loading /> : <ShowProducts />}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
+
+{
+  /* <Link to="/addnewmachine">
+                <button
+                  className="btn btn-info btn-lg"
+                  style={{
+                    position: "absolute",
+                    backgroundColor: "#172578",
+                    color: "white",
+                    margintop: "150px",
+                    left: "50%",
+                    "-ms-transform": "translate(-50%, -50%)",
+                    transform: "translate(-50%, -50%)",
+                  }}
+                >
+                  {" "}
+                  Add New Machine
+                </button>
+              </Link> */
+}
 
 export default RentMachines;

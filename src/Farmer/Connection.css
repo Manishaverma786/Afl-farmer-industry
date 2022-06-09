@@ -1,0 +1,107 @@
+.main_layout {
+    margin-left: calc(17% + 32px);
+    margin-right: 32px;
+    padding-top: 100px;
+    flex-direction: column;
+  }
+  
+  .main_layout > * {
+    z-index: 2;
+  }
+  
+  .blocks {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    gap: 72px;
+  }
+  
+  .blocks > div {
+    width: 380px;
+    height: 128px;
+    background: #ffffff;
+    box-sizing: border-box;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  }
+  
+  .blocks > div.active {
+    border: 2px solid #172578;
+  }
+  
+  #buyersText {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.15px;
+    color: #172578;
+    padding-top: 8px;
+  }
+  
+  #buyersAmt {
+    padding-top: 8px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 64px;
+    text-align: center;
+    letter-spacing: 1px;
+    color: #0a1033;
+  }
+  
+  .table {
+    background: #ffffff;
+    filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+    margin-top: 50px;
+  }
+  
+  .table_header {
+    margin-left: 32px;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  #tableName {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    flex: 1;
+    letter-spacing: 0.15px;
+    color: #0a1033;
+  }
+  
+  .sortFilter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .sortFilter > img {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .sortFilter > p {
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-left: 8px;
+    margin-right: 32px;
+    letter-spacing: 0.25px;
+    color: #4b506d;
+  }
+  

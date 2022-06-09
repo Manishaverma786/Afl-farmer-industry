@@ -59,26 +59,19 @@ const ResidueDetails = () => {
         <div className="col-md-4">
           <SideBarFarmer />
         </div>
-        <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
-          <h1
-            className="text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds"
-            style={{ marginTop: 100, color: "#172578" }}
-          >
-            Residues
-          </h1>
-        </div>
-        <div className="row ">
-          <div className="col-md-9 mt-2" style={{ marginLeft: 300 }}>
-            <div className="row justify-content-center">{<ShowResidue />}</div>
-            <Link to="/sellresidue">
+        <br></br>
+        <br></br>
+        <br></br>
+        <div>
+        <Link to="/sellresidue">
               <button
                 className="btn btn-info btn-lg"
                 style={{
                   position: "absolute",
                   backgroundColor: "#172578",
                   color: "white",
-                  margintop: "150px",
-                  left: "50%",
+                  marginBottom: "500px",
+                  left: "85%",
                   "-ms-transform": "translate(-50%, -50%)",
                   transform: "translate(-50%, -50%)",
                 }}
@@ -87,6 +80,36 @@ const ResidueDetails = () => {
                 Add Residue
               </button>
             </Link>
+            </div>
+        <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
+          <h1
+            className="text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds"
+            style={{ marginTop: 50, color: "#172578" }}
+          >
+            Residues
+          </h1>
+        </div>
+       
+        <div className="row ">
+          <div className="col-md-9 mt-2" style={{ marginLeft: 300 }}>
+            <div className="row justify-content-center">{<ShowResidue />}</div>
+            {/* <Link to="/sellresidue">
+              <button
+                className="btn btn-info btn-lg"
+                style={{
+                  position: "absolute",
+                  backgroundColor: "#172578",
+                  color: "white",
+                  marginBottom: "500px",
+                  left: "100%",
+                  "-ms-transform": "translate(-50%, -50%)",
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                {" "}
+                Add Residue
+              </button>
+            </Link> */}
           </div>
         </div>
       </div>
