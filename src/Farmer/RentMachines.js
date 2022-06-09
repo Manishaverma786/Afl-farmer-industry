@@ -58,7 +58,7 @@ const RentMachines = () => {
                       {machines.name.substring(0, 12)}
                     </h5>
                     <p class="card-text lead fw-bold">
-                      {machines.price}₹ {machines.id}
+                      {machines.rent_price}₹ {machines.id}
                     </p>
                     <p className="card-text">
                       {machines.description.substring(0, 20)}...
