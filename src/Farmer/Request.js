@@ -111,7 +111,7 @@ const Request = () => {
           <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
           <h1
             className="text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds"
-            style={{ marginTop: 50, color: "#172578" }}
+            style={{ marginTop: 0, color: "#172578" }}
           >
             Requests
           </h1>
