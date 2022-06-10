@@ -44,18 +44,11 @@ function AddMachine() {
       // console.log(key, value);
     }
 
-<<<<<<< HEAD
     await axios.post("machines/", formData)
       // console.log("data", data)
       alert('Machine Added Successfully')
       history(`/machinelist`)
     
-=======
-    let { data } = await axios.post("machines/", formData);
-    console.log("data", data)
-    // localStorage.setItem("machine_info", JSON.stringify(data));
-    history(`/machinelist`)
->>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
   }
   return (
     <>
@@ -74,10 +67,6 @@ function AddMachine() {
             <label htmlFor="colFormLabel" className="col-sm-3 col-form-label mt-2 fw-bolder">Length:</label>
             <input type="number" className='form-control' value={length} placeholder='length' onChange={(e) => {
               setLength(parseInt(e.target.value))
-<<<<<<< HEAD
-=======
-              // console.log(e.target.value, typeof(e.target.value))
->>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
 
             }} />
             <label htmlFor="colFormLabel" className="col-sm-3 col-form-label mt-2 fw-bolder">Weight:</label>
@@ -88,19 +77,9 @@ function AddMachine() {
             <input type="number" className='form-control' value={warranty} placeholder='warranty' onChange={(e) => setWarrenty(e.target.value)} />
             <label htmlFor="colFormLabel" className="col-sm-3 col-form-label mt-2 fw-bolder">Guarentee:</label>
             <input type="number" className='form-control' value={guarantee} placeholder='guarentee' onChange={(e) => setGuarantee(e.target.value)} />
-<<<<<<< HEAD
              <label htmlFor="formFile" className="form-label col-sm-3 col-form-label fw-bolder mt-2">Uplaod Image: </label>
             <input type="file" onChange={(e) => setFile(e.target.files[0])}></input> <br />
              <input type="checkbox" value={for_sale} onChange={(e) => setFor_sale(e.target.checked)} />
-=======
-            {/* <label htmlFor="colFormLabel" className="col-sm-3 col-form-label mt-2 fw-bolder">Indsutry Number:</label> */}
-            {/* <input type="number" className='form-control' value={industry} placeholder='choose your industry number' onChange={(e) => setIndustry(e.target.value)} /><br /> */}
-            <label htmlFor="formFile" className="form-label col-sm-3 col-form-label fw-bolder mt-2">Uplaod Image: </label>
-            <input type="file" onChange={(e) => setFile(e.target.files[0])}></input> <br />
-            {/* <label htmlFor="colFormLabel" className="col-sm-3 col-form-label fw-bolder">Image</label> */}
-            {/* <input type="file" className='form-control' value={file} placeholder='file' onChange={(e) => setFile(e.target.files[0])} /><br /> */}
-            <input type="checkbox" value={for_sale} onChange={(e) => setFor_sale(e.target.checked)} />
->>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
             <label htmlFor="sell">For Sale</label><br />
             <input type="checkbox" value={for_rent} onChange={(e) => setFor_rent(e.target.checked)} />
             <label htmlFor="for_rent"> For Rent</label><br />

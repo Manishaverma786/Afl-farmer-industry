@@ -1,11 +1,7 @@
 import React, { useEffect,useState } from "react";
 import "./Connection.css";
 import axios from "../../api/axios";
-<<<<<<< HEAD
 import { FaWhatsapp } from 'react-icons/fa';
-=======
-
->>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
  
 
 const Connection = () => {
