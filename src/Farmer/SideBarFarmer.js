@@ -1,30 +1,28 @@
-import React,{useState,useEffect} from 'react';
-import AFL from '../Industry/Images/AFL.svg'
-import { makeStyles } from '@material-ui/core'
-import Drawer from '@material-ui/core/Drawer'
-import Typography from '@material-ui/core/Typography'
-import { useNavigate, useLocation, Outlet } from 'react-router-dom'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
-import AddCircleOutlineOutlined from '@material-ui/icons/AddCircleOutlineOutlined';
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
-import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import DriveEtaOutlinedIcon from '@material-ui/icons/DriveEtaOutlined';
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Avatar from '@material-ui/core/Avatar'
-import { Nav, NavDropdown } from 'react-bootstrap'
-import { Link} from 'react-router-dom';
-import shoppingcarticon from '../Farmer/assets/shoppingcarticon.png';
-import axios from '../api/axios';
-
-
+import React, { useState, useEffect } from "react";
+import AFL from "../Industry/Images/AFL.svg";
+import { makeStyles } from "@material-ui/core";
+import Drawer from "@material-ui/core/Drawer";
+import Typography from "@material-ui/core/Typography";
+import { useNavigate, useLocation,Outlet } from "react-router-dom";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
+import GroupAddOutlinedIcon from "@material-ui/icons/GroupAddOutlined";
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+import AddCircleOutlineOutlined from "@material-ui/icons/AddCircleOutlineOutlined";
+import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
+import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import DriveEtaOutlinedIcon from "@material-ui/icons/DriveEtaOutlined";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Avatar from "@material-ui/core/Avatar";
+import { Nav, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import shoppingcarticon from "../Farmer/assets/shoppingcarticon.png";
+import axios from "../api/axios";
 
 const drawerWidth = 250
 
@@ -33,7 +31,7 @@ const useStyles = makeStyles((theme) => {
         page: {
             background: '#f9f9f9',
             width: '100%',
-            padding: theme.spacing(3),
+            padding: theme.spacing(2),
         },
         root: {
             display: 'flex',
@@ -71,7 +69,7 @@ const useStyles = makeStyles((theme) => {
         appBar: {
             width: `calc(100% - ${drawerWidth}px)`,
             marginLeft: drawerWidth,
-            background: '#f4f4f4',
+            background: '#dcdcdc',
             height: 60
         },
         logo: {
@@ -100,136 +98,137 @@ const useStyles = makeStyles((theme) => {
 })
 
 export default function SideBar({ children }) {
-    const classes = useStyles()
-    const navigate = useNavigate()
-    const location = useLocation()
-    const history = useNavigate();
-    const [user,setUser] =useState([]);
+  const classes = useStyles();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const history = useNavigate();
+  const [user, setUser] = useState([]);
 
-    useEffect (()=>{
-        getuser();
-    },[]);
-     
-        const getuser =() =>{
-            axios.get("profile")
-            .then((response) => {
-                const getdata =response.data;
-                console.log('data', response.data);
-                localStorage.setItem('user', JSON.stringify(response.data))
-                setUser(getdata)
-            }).catch(error=>console.error(error))
-        }
+  useEffect(() => {
+    getuser();
+  }, []);
 
-    function logout() {
-        localStorage.clear();
-        history('/')
-    }
+  const getuser = () => {
+    axios
+      .get("profile")
+      .then((response) => {
+        const getdata = response.data;
+        localStorage.setItem("user", JSON.stringify(response.data));
+        setUser(getdata);
+      })
+      .catch((error) => console.error(error));
+  };
 
-    const menuItems = [
-        {
-            text: 'Homepage',
-            icon: <HomeOutlinedIcon  />,
-            path: '/homepagefarmer'
-        },
-        {
-            text: 'My Products',
-            icon: <CalendarTodayIcon  />,
-            path: '/rentmachines'
-        },
-        {
-            text: 'Residue',
-            icon: <AddCircleOutlineOutlined />,
-            path: '/residuedetails'
-        },
-        
-        {
-            text: 'Connections',
-            icon: <GroupAddOutlinedIcon  />,
-            path: '/connection'
-        },
-        {
-            text: 'Requests',
-           
-            icon: <FavoriteBorderIcon />,
-            path: '/requestfarmer'
-        },
-        {
-            text: 'Settings',
-            icon: <SettingsOutlinedIcon  />,
-            path: '/settings'
-        },
+  function logout() {
+    localStorage.clear();
+    history("/");
+  }
 
-        {
-            text: 'Exit',
-            icon: <ExitToAppRoundedIcon  />,
-            path: '/'
-        },
-    ];
+  const menuItems = [
+    {
+      text: "Homepage",
+      icon: <HomeOutlinedIcon />,
+      path: "/homepagefarmer",
+    },
+    {
+      text: "My Products",
+      icon: <CalendarTodayIcon />,
+      path: "/rentmachines",
+    },
+    {
+      text: "Residue",
+      icon: <AddCircleOutlineOutlined />,
+      path: "/residuedetails",
+    },
 
-return (
+    {
+      text: "Connections",
+      icon: <GroupAddOutlinedIcon />,
+      path: "/connection",
+    },
+    {
+      text: "Requests",
+
+      icon: <FavoriteBorderIcon />,
+      path: "/requestfarmer",
+    },
+    {
+      text: "Settings",
+      icon: <SettingsOutlinedIcon />,
+      path: "/settings",
+    },
+
+    
+  ];
+
+  return (
     <div className={classes.root}>
-    {/* app bar */}
-    <AppBar
-        position="fixed"
-        className={classes.appBar}
-        elevation={0}
-    >
+      {/* app bar */}
+      <AppBar position="fixed" className={classes.appBar} elevation={0}>
         <Toolbar>
-            <Typography className={classes.navtop}  >
-                <img className={classes.logo} src={AFL} alt="logo" />
-            </Typography>
-            <Link to="/cart">
-                      {" "}
-                      <img
-                        src= {shoppingcarticon}
-                        style={{ width: "30px", textAlign: "right",marginLeft:"500px"}}
-                      />{" "}
-                    </Link>
-            {localStorage.getItem('user') ?
-                <Nav>
-                    <NavDropdown className={classes.user} title={user.username}>
-                        <NavDropdown.Item onClick={logout} >Logout</NavDropdown.Item>
-                    </NavDropdown>
-                </Nav>
-                : null
-            }
-        </Toolbar>
-    </AppBar >
+          <Typography className={classes.navtop}>
+            <img className={classes.logo} src={AFL} alt="logo" />
+          </Typography>
+          <Link to="/cart">
+            {" "}
+            <img
+              src={shoppingcarticon}
+              style={{ width: "30px", textAlign: "right", marginLeft: "500px" }}
+            />{" "}
+          </Link>
+          {localStorage.getItem('user') ?
+                        <Nav>
+                            <NavDropdown className={classes.user} title={user.username}>
+                                <NavDropdown.Item onClick={logout} >Logout</NavDropdown.Item>
+                            </NavDropdown>
+                        </Nav>
+                        : null
+                    }
+                </Toolbar>
+            </AppBar >
 
-    {/* side drawer */}
-    < Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{ paper: classes.drawerPaper }
-        }
-        anchor="left"
+            {/* side drawer */}
+            < Drawer
+                className={classes.drawer}
+                variant="permanent"
+                classes={{ paper: classes.drawerPaper }
+                }
+                anchor="left"
 
-    >
-        <Avatar className={classes.avatar} style={{ backgroundColor: "#ffffff" }} align="center" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-        <Typography variant='h6' style={{ color: "#ffffff" }} className={classes.title} >{user.name}</Typography>
-        {/* <Typography variant="subtitle1" className={classes.bottom} >{user.email}</Typography> */}
-        <br></br>
-        {/* links/list section */}
-        <List >
-            {menuItems.map((item) => (
-                <ListItem
-                    button
-                    key={item.text}
-                    onClick={() => navigate(item.path)}
-                    className={location.pathname === item.path ? classes.active : classes.hover}
+            >
+                <Avatar className={classes.avatar} style={{ backgroundColor: "#ffffff" }} align="center" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                <Typography variant='h6' style={{ color: "#ffffff" }} className={classes.title} >{user.name}</Typography>
+                {/* <Typography variant="subtitle1" className={classes.bottom} >{user.email}</Typography> */}
+                <br></br>
+                {/* links/list section */}
+                <List >
+                    {menuItems.map((item) => (
+                        <ListItem
+                            button
+                            key={item.text}
+                            onClick={() => navigate(item.path)}
+                            className={location.pathname === item.path ? classes.active : classes.hover}
 
-                >
-                    <ListItemIcon style={{ color: '#fff' }} >{item.icon}</ListItemIcon>
-                    <ListItemText style={{ color: '#fff' }} primary={item.text} />
-                </ListItem>
-            ))}
-        </List>
-    </Drawer >
-    <div className={classes.page}>
-        {children}
-    </div>
-    <Outlet />
-</div >
+                        >
+                            <ListItemIcon style={{ color: '#fff' }} >{item.icon}</ListItemIcon>
+                            <ListItemText style={{ color: '#fff' }} primary={item.text} />
+                        </ListItem>
+                    ))}
+                    <ListItem
+                        button
+                        onClick={() => logout()}
+                    >
+                        <ListItemIcon style={{ color: '#fff' }} ><ExitToAppRoundedIcon /></ListItemIcon>
+                        <ListItemText style={{ color: '#fff' }} primary="Logout" />
+                    </ListItem>
+                </List>
+            </Drawer > 
+            <div className={classes.page}>
+                <div className={classes.toolbar}></div>
+                {children}
+            </div>
+            <Outlet />
+        </div >
 
     )
 }

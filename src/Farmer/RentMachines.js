@@ -92,7 +92,7 @@ const RentMachines = () => {
         
         <br></br>
         <br></br>
-        <br></br>
+        
         <div>
         <Link to="/addnewmachine">
               <button
@@ -114,7 +114,7 @@ const RentMachines = () => {
             </div>
           <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
             <h1
-              className="text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds"
+              className="text-center border border-1 p-4  shadow p-3 mb-3 bg-body rounded"
               style={{ marginTop: 50, color: "#172578 " }}
             >
               My Products
