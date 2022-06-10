@@ -1,29 +1,26 @@
+import SideBar from './SideBar';
 import React, { useEffect, useState } from 'react';
-import axios from '../api/axios';
+import axios from '../api/axios'; 
 
- 
-const Residue = ({title}) => {
-    
+const Residue = () => {
+
     const [residues, setResidues] = useState([]);
 
     const fetchData = () => {
         axios.get("residues")
             .then(response => {
-                // console.log("residues list", response.data);
+                console.log("residues list", response.data);
                 setResidues(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-              });
+            });
     }
     const createorder = (id) => {
         axios.post("residue-orders/", {
             residue: id
-        }).then(res => {
-            alert('ordered successfully')
-        }).catch(e => {
-            alert("order fail")
         })
+            .then(response => {
+                let orders = response.data;
+                console.log("Order", orders);
+            });
     }
 
     useEffect(() => {
@@ -51,14 +48,21 @@ const Residue = ({title}) => {
         )
     }
     return (
-        <>
-            <div className="container">
-                <div className="row py-4 justify-content-evenly" >
-                    <h1 className='text-center border border-1 py-4  shadow p-4 mt-3 mb-5 bg-body roundeds' style={{ marginTop: 100, color: "#172578 " }}>{title}</h1>
-                    <div className="row justify-content-center">{<ShowResidue />}</div>
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-md-4">
+                    <SideBar />
+                </div>
+                <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
+                    <h1 className='text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds' style={{ marginTop: 100 }}>Residues</h1>
+                </div>
+                <div className="row ">
+                    <div className="col-md-9 mt-2" style={{ marginLeft: 300 }}>
+                        <div className="row justify-content-center">{<ShowResidue />}</div>
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

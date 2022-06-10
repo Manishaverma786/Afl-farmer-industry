@@ -3,7 +3,7 @@ import './SignUp.css';
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
-import LoginProto from '../Login/images/image-overlay.png'
+import LoginProto from '../Login/images/LoginProto.svg'
 
 
 export default function SignUp() {
@@ -43,6 +43,7 @@ export default function SignUp() {
 
     }
     return (
+
         <div className="container-fluid">
             <div className="row justify-content-around">
                 <div className="col-md-5 d-none d-md-block" id='img' >

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Skeleton from 'react-loading-skeleton';
 import { useNavigate } from 'react-router-dom'
 import axios from '../api/axios';
+import SideBar from './SideBar';
 const MachineList = () => {
 
     const history = useNavigate();
@@ -13,9 +14,12 @@ const MachineList = () => {
         setLoadiing(true);
         const {data} = await axios.get("machines/")
         setFilter(data)
-        // console.log(data);
+        console.log(data);
         setLoadiing(false)
+
     }, []);
+
+    console.log(filter, '----------')
 
     const Loading = () => {
         return (
@@ -51,11 +55,11 @@ const MachineList = () => {
                             <div className="col-md-4 mb-4 mt-3 ">
                                 <div className="card h-100 text-center py-4" key={machines.id}>
                                     <img src={machines.image} className="card-img-top" alt={machines.name} height="200px" />
-                                    <div className="card-body">
-                                        <h5 className="card-title mb-0">{machines.name.substring(0, 12)}</h5>
-                                        <p className="card-text lead fw-bold">{machines.sell_price}₹ {machines.id}</p>
+                                    <div class="card-body">
+                                        <h5 class="card-title mb-0">{machines.name.substring(0, 12)}</h5>
+                                        <p class="card-text lead fw-bold">{machines.sell_price}₹ {machines.id}</p>
                                         <p className="card-text">{machines.description.substring(0, 20)}...</p>
-                                        <div className="btn btn-primary" onClick={() => { handleClick(machines.id) }} > more details</div>
+                                        <div class="btn btn-primary" onClick={() => { handleClick(machines.id) }} > more details</div>
                                     </div>
                                 </div>
                             </div>
@@ -68,14 +72,20 @@ const MachineList = () => {
     }
 
     return (
-        <>
-            <div className="container">
-                <div className="row py-4 justify-content-evenly" >
-                    <h1 className='text-center border border-1 py-4  shadow p-4 mt-3 mb-5 bg-body roundeds' style={{ marginTop: 100, color: "#172578 " }}>Machines List</h1>
-                    <div className="row justify-content-center">{loading ? <Loading /> : <ShowProducts />}</div>
+        <div>
+            <div className="container py-5 mt-4">
+                <div className="row">
+                    <div className='col-3'>
+                        <SideBar />
+                    </div>
+                    <div className="col-9 mb-5">
+                        <h1 className='display-6 fw-bolder text-center'>Machines List</h1>
+                        <hr />
+                        <div className="row justify-content-center">{loading ? <Loading /> : <ShowProducts />}</div>
+                    </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 
