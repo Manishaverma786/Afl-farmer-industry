@@ -11,5 +11,4 @@ export class Tractor extends Component {
         )
     }
 }
-
 export default Tractor

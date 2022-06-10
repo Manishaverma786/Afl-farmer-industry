@@ -46,27 +46,14 @@ const Connections = () => {
   }
   return (
     <>
-      <div className="container-fluid ">
-        <div className="row">
-          <div className="col-md-4">
-            <SideBarFarmer />
-          </div>
-          <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
-          <h1
-            className="text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds"
-            style={{ marginTop: 0, color: "#172578" }}
-          >
-            Connections
-          </h1>
-        </div>
-        </div>
-        <div className="row ">
-          <div className="col-md-9 mt-2" style={{marginLeft: 300 }}>
-            <div className="row justify-content-center">{<ShowConnections />}</div>
-          </div>
-        </div>
+    <div className="container">
+      <div className="row py-4 justify-content-evenly" >
+        <h1 className='text-center border border-1 py-4  shadow p-4 mt-3 mb-5 bg-body roundeds' style={{ marginTop: 100, color: "#172578 " }}>Connections
+        </h1>
+        <div className="row justify-content-center mt-4">{<ShowConnections />}</div>
       </div>
-    </>
+    </div>
+  </>
   );
 };
 export default Connections;
