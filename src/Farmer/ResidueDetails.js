@@ -61,7 +61,7 @@ const ResidueDetails = () => {
         </div>
         <br></br>
         <br></br>
-        <br></br>
+        
         <div>
         <Link to="/sellresidue">
               <button
@@ -83,33 +83,16 @@ const ResidueDetails = () => {
             </div>
         <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
           <h1
-            className="text-center border border-1 p-4  shadow p-3 mb-3 bg-body roundeds"
+            className="text-center border border-1 p-4  shadow p-3 mb-3 bg-body rounded"
             style={{ marginTop: 50, color: "#172578" }}
           >
             Residues
           </h1>
         </div>
        
-        <div className="row ">
+        <div className="container ">
           <div className="col-md-9 mt-2" style={{ marginLeft: 300 }}>
             <div className="row justify-content-center">{<ShowResidue />}</div>
-            {/* <Link to="/sellresidue">
-              <button
-                className="btn btn-info btn-lg"
-                style={{
-                  position: "absolute",
-                  backgroundColor: "#172578",
-                  color: "white",
-                  marginBottom: "500px",
-                  left: "100%",
-                  "-ms-transform": "translate(-50%, -50%)",
-                  transform: "translate(-50%, -50%)",
-                }}
-              >
-                {" "}
-                Add Residue
-              </button>
-            </Link> */}
           </div>
         </div>
       </div>
