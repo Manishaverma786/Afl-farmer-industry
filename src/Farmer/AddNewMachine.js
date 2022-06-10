@@ -27,7 +27,7 @@ function AddNewMachine() {
     for (const [key, value] of Object.entries(formdata)) {
       formData.append(key, value);
     }
-
+    
     let { data } = await axios.post("machines/", formData);
     console.log("data", data);
     history(`/rentmachines`);
@@ -36,8 +36,8 @@ function AddNewMachine() {
     <div className="container">
       <div className="row">
         <div className="col-md-3">
-          <SideBarFarmer />
-          <Tractor />
+          {/* <SideBarFarmer /> */}
+          {/* <Tractor /> */}
         </div>
         <div className="col-md-9 mt-5">
           <div className="col-sm-8 offset-sm-2" style={{ margintop: 100 }}>
@@ -66,7 +66,7 @@ function AddNewMachine() {
                 placeholder="description"
                 onChange={(e) => setDescription(e.target.value)}
               />
-             
+
               <label
                 htmlFor="colFormLabel"
                 className="col-sm-3 col-form-label mt-2 fw-bolder"
@@ -104,7 +104,6 @@ function AddNewMachine() {
                 onChange={(e) => setFile(e.target.files[0])}
               ></input>{" "}
               <br />
-            
               <button type="submit" className="btn btn-primary">
                 Add Product
               </button>

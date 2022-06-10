@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import { useParams } from "react-router";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 
 const ResidueDetails = () => {
-  const { id } = useParams();
   const [residues, setResidue] = useState([]);
   const navigate = useNavigate();
 

@@ -31,40 +31,36 @@ import MoreDetailsIndustryList from './Farmer/MoreDetailsIndustryList';
 function App() {
   return (
     <Router>
-      <Layout>
-      <Routes>
-      <Route exact path="/" element={<HomePage />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/industry" element={<Login />} />
-        <Route path='homepagei' element={<Layout children={<HomepageI/>}/>} />
-        <Route path="machinelist" element={<Layout children={<MachineList />}/>}  />
-        <Route path="machines/:id" element= {<Layout children={<Machine />}/>} />
-        <Route path="addmachine" element= {<Layout children={<AddMachine />}/>} />
-        <Route path="connections" element= {<Layout children={<Connection/>}/>} />
-        <Route path="requestpage" element={<Layout children = {<RequestPage title="Requests" />}/>} />
-        <Route path="residues" element={<Layout children = {<Residue title="Residue" />}/>}  />
-        <Route path="update/:id" element={<Layout children = {<Update />} />}/>
-        
-      {/* Farmer */} 
-      <Route path="homepagefarmer" element={<HomepageFarmer />} />
-      <Route path="buy" element={<BuyMachines />} />
-      <Route path="residuedetails" element={<SideBar children = {<ResidueDetails />}/>}  />
-      {/* <Route path="residuedetails" element={<ResidueDetails />} /> */}
-      <Route path="sellresidue" element={<SellResidue />} />
-      {/* <Route path="changepassword" element={<ChangePassword />} /> */}
-      <Route path="cart" element={<Cart />} />
-      <Route path="connection" element={<Connections/>} />
-      <Route path="machine/:id" element={<MachineFarmer />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="addnewmachine" element={<AddNewMachine />} />
-      <Route path="rentmachines" element={<RentMachines />} />
-      <Route path="settings" element={<Settings />} />
-      <Route path="requestfarmer" element={<Request />} />
-      <Route path="moredetails/:id" element={<MoreDetailsIndustryList />} />
-      </Routes>
-      </Layout>
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/industry" element={<Login />} />
+          <Route path='homepagei' element={<Layout children={<HomepageI />} />} />
+          <Route path="machinelist" element={<Layout children={<MachineList />} />} />
+          <Route path="machines/:id" element={<Layout children={<Machine />} />} />
+          <Route path="addmachine" element={<Layout children={<AddMachine />} />} />
+          <Route path="connections" element={<Layout children={<Connection />} />} />
+          <Route path="requestpage" element={<Layout children={<RequestPage title="Requests" />} />} />
+          <Route path="residues" element={<Layout children={<Residue title="Residue" />} />} />
+          <Route path="update/:id" element={<Layout children={<Update />} />} />
+
+          {/* Farmer */}
+          <Route path="homepagefarmer" element={<HomepageFarmer />} />
+          <Route path="buy" element={<BuyMachines />} />
+          <Route path="residuedetails" element={<SideBar children={<ResidueDetails />} />} />    
+          <Route path="sellresidue" element={<SellResidue />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="connection" element={<SideBar children={<Connections />} />} />
+          <Route path="machine/:id" element={<SideBar children={<MachineFarmer />} />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="addnewmachine" element={<SideBar children={<AddNewMachine />} />} />
+          <Route path="rentmachines"  element={<SideBar children={<RentMachines />} />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="requestfarmer" element={<SideBar children={<Request />} />} />
+          <Route path="moredetails/:id" element={<MoreDetailsIndustryList />} />
+        </Routes>
     </Router>
   );
 }
