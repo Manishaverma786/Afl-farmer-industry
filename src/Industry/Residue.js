@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
+<<<<<<< HEAD
 
 const Residue = ({ title }) => {
+=======
+>>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
 
+const Residue = ({title}) => {
+    
     const [residues, setResidues] = useState([]);
 
     const fetchData = () => {

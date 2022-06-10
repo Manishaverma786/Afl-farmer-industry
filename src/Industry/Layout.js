@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+import React,{useState,useEffect} from 'react';
+>>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
 import AFL from '../Industry/Images/AFL.svg'
 import { makeStyles } from '@material-ui/core'
 import Drawer from '@material-ui/core/Drawer'
@@ -28,7 +32,11 @@ const useStyles = makeStyles((theme) => {
         page: {
             background: '#f9f9f9',
             width: '100%',
+<<<<<<< HEAD
             padding: theme.spacing(2),
+=======
+            padding: theme.spacing(3),
+>>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
         },
         root: {
             display: 'flex',
@@ -66,7 +74,11 @@ const useStyles = makeStyles((theme) => {
         appBar: {
             width: `calc(100% - ${drawerWidth}px)`,
             marginLeft: drawerWidth,
+<<<<<<< HEAD
             background: '#dcdcdc',
+=======
+            background: '#f4f4f4',
+>>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
             height: 60
         },
         logo: {
@@ -99,6 +111,7 @@ export default function SideBar({ children }) {
     const navigate = useNavigate()
     const location = useLocation()
     const history = useNavigate();
+<<<<<<< HEAD
     const [user, setUser] = useState([]);
 
     useEffect(() => {
@@ -113,6 +126,22 @@ export default function SideBar({ children }) {
                 setUser(getdata)
             }).catch(error => console.error(error))
     }
+=======
+    const [user,setUser] =useState([]);
+
+    useEffect (()=>{
+        getuser();
+    },[]);
+     
+        const getuser =() =>{
+            axios.get("profile")
+            .then((response) => {
+                const getdata =response.data;
+                localStorage.setItem('user', JSON.stringify(response.data))
+                setUser(getdata)
+            }).catch(error=>console.error(error))
+        }
+>>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
 
     function logout() {
         localStorage.clear();
@@ -151,11 +180,19 @@ export default function SideBar({ children }) {
             path: '/residues'
         },
 
+<<<<<<< HEAD
         // {
         //     text: 'Logout',
         //     icon: <ExitToAppRoundedIcon />,
         //     path: '/'
         // },
+=======
+        {
+            text: 'Logout',
+            icon: <ExitToAppRoundedIcon />,
+            path: '/'
+        },
+>>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
     ];
 
     return (
@@ -208,6 +245,7 @@ export default function SideBar({ children }) {
                             <ListItemText style={{ color: '#fff' }} primary={item.text} />
                         </ListItem>
                     ))}
+<<<<<<< HEAD
                     <ListItem
                         button
                         onClick={() => logout()}
@@ -217,11 +255,18 @@ export default function SideBar({ children }) {
                     </ListItem>
                 </List>
             </Drawer > 
+=======
+                </List>
+            </Drawer >
+>>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
             <div className={classes.page}>
                 <div className={classes.toolbar}></div>
                 {children}
             </div>
+<<<<<<< HEAD
             <Outlet />
+=======
+>>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
         </div >
 
     )

@@ -31,12 +31,14 @@ import MoreDetailsIndustryList from './Farmer/MoreDetailsIndustryList';
 function App() {
   return (
     <Router>
+      <Layout>
       <Routes>
       <Route exact path="/" element={<HomePage />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/industry" element={<Login />} />
+<<<<<<< HEAD
         <Route path='homepagei' element={<Layout children={<HomepageI/>}/>} />
         <Route path="machinelist" element={<Layout children={<MachineList />}/>}  />
         <Route path="machines/:id" element= {<Layout children={<Machine />}/>} />
@@ -45,6 +47,17 @@ function App() {
         <Route path="requestpage" element={<Layout children = {<RequestPage title="Requests" />}/>} />
         <Route path="residues" element={<Layout children = {<Residue title="Residue" />}/>}  />
         <Route path="update/:id" element={<Layout children = {<Update />} />}/>
+=======
+        <Route path='/homepagei' element={<HomepageI />} />
+        <Route path='/sidebar' element={<SideBar />} />
+        <Route path="machinelist" element={<MachineList />} />
+        <Route path="machines/:id" element={<Machine />} />
+        <Route path="addmachine" element={<AddMachine />} />
+        <Route path="connections" element={<Connection />} />
+        <Route path="requestpage" element={<RequestPage title="Requests"/>} />
+        <Route path="residues" element={<Residue title ="Residue"/>} />
+        <Route path='/prefillform' element={<Prefillform/>} />
+>>>>>>> 2dc1961d0fbb2756ad223327097153eab8360884
         
       {/* Farmer */} 
       <Route path="homepagefarmer" element={<HomepageFarmer />} />
@@ -62,9 +75,8 @@ function App() {
       <Route path="settings" element={<Settings />} />
       <Route path="requestfarmer" element={<Request />} />
       <Route path="moredetails/:id" element={<MoreDetailsIndustryList />} />
-
-
       </Routes>
+      </Layout>
     </Router>
   );
 }
