@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import AFL from '../Industry/Images/AFL.svg'
-import { makeStyles } from '@material-ui/core'
-import Drawer from '@material-ui/core/Drawer'
-import Typography from '@material-ui/core/Typography'
-import { useNavigate, useLocation, Outlet } from 'react-router-dom'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemText from '@material-ui/core/ListItemText'
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
-import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
+import React, { useState, useEffect } from "react";
+import AFL from "../Industry/Images/AFL.svg";
+import { makeStyles } from "@material-ui/core";
+import Drawer from "@material-ui/core/Drawer";
+import Typography from "@material-ui/core/Typography";
+import { useNavigate, useLocation,Outlet } from "react-router-dom";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import GroupAddOutlinedIcon from "@material-ui/icons/GroupAddOutlined";
-import AddCircleOutlineOutlined from '@material-ui/icons/AddCircleOutlineOutlined';
-import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Avatar from '@material-ui/core/Avatar'
-import { Nav, NavDropdown } from 'react-bootstrap'
-import axios from '../api/axios';
-
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+import AddCircleOutlineOutlined from "@material-ui/icons/AddCircleOutlineOutlined";
+import SettingsOutlinedIcon from "@material-ui/icons/SettingsOutlined";
+import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import DriveEtaOutlinedIcon from "@material-ui/icons/DriveEtaOutlined";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Avatar from "@material-ui/core/Avatar";
+import { Nav, NavDropdown } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import shoppingcarticon from "../Farmer/assets/shoppingcarticon.png";
+import axios from "../api/axios";
 
 const drawerWidth = 250
 
@@ -96,78 +98,85 @@ const useStyles = makeStyles((theme) => {
 })
 
 export default function SideBar({ children }) {
-    const classes = useStyles()
-    const navigate = useNavigate()
-    const location = useLocation()
-    const history = useNavigate();
-    const [user, setUser] = useState([]);
+  const classes = useStyles();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const history = useNavigate();
+  const [user, setUser] = useState([]);
 
-    useEffect(() => {
-        getuser();
-    }, []);
+  useEffect(() => {
+    getuser();
+  }, []);
 
-    const getuser = () => {
-        axios.get("profile")
-            .then((response) => {
-                const getdata = response.data;
-                localStorage.setItem('user', JSON.stringify(response.data))
-                setUser(getdata)
-            }).catch(error => console.error(error))
-    }
+  const getuser = () => {
+    axios
+      .get("profile")
+      .then((response) => {
+        const getdata = response.data;
+        localStorage.setItem("user", JSON.stringify(response.data));
+        setUser(getdata);
+      })
+      .catch((error) => console.error(error));
+  };
 
-    function logout() {
-        localStorage.clear();
-        history('/')
-    }
+  function logout() {
+    localStorage.clear();
+    history("/");
+  }
 
-    const menuItems = [
-      {
-        text: "Homepage",
-        icon: <HomeOutlinedIcon />,
-        path: "/homepagefarmer",
-      },
-      {
-        text: "My Products",
-        icon: <CalendarTodayIcon />,
-        path: "/rentmachines",
-      },
-      {
-        text: "Residue",
-        icon: <AddCircleOutlineOutlined />,
-        path: "/residuedetails",
-      },
-  
-      {
-        text: "Connections",
-        icon: <GroupAddOutlinedIcon />,
-        path: "/connection",
-      },
-      {
-        text: "Requests",
-  
-        icon: <FavoriteBorderIcon />,
-        path: "/requestfarmer",
-      },
-      {
-        text: "Settings",
-        icon: <SettingsOutlinedIcon />,
-        path: "/settings",
-      },
-    ];
+  const menuItems = [
+    {
+      text: "Homepage",
+      icon: <HomeOutlinedIcon />,
+      path: "/homepagefarmer",
+    },
+    {
+      text: "My Products",
+      icon: <CalendarTodayIcon />,
+      path: "/rentmachines",
+    },
+    {
+      text: "Residue",
+      icon: <AddCircleOutlineOutlined />,
+      path: "/residuedetails",
+    },
 
-    return (
-        <div className={classes.root}>
-            {/* app bar */}
-            <AppBar
-                position="fixed"
-                className={classes.appBar}
-                elevation={0}
-            >
-                <Toolbar>
-                    <Typography className={classes.navtop}  >
-                        <img className={classes.logo} src={AFL} alt="logo" />
-                    </Typography>
-                    {localStorage.getItem('user') ?
+    {
+      text: "Connections",
+      icon: <GroupAddOutlinedIcon />,
+      path: "/connection",
+    },
+    {
+      text: "Requests",
+
+      icon: <FavoriteBorderIcon />,
+      path: "/requestfarmer",
+    },
+    {
+      text: "Settings",
+      icon: <SettingsOutlinedIcon />,
+      path: "/settings",
+    },
+
+    
+  ];
+
+  return (
+    <div className={classes.root}>
+      {/* app bar */}
+      <AppBar position="fixed" className={classes.appBar} elevation={0}>
+        <Toolbar>
+          <Typography className={classes.navtop}>
+            <img className={classes.logo} src={AFL} alt="logo" />
+          </Typography>
+          <Link to="/cart">
+            {" "}
+            <img
+              src={shoppingcarticon}
+              style={{ width: "30px", textAlign: "right", marginLeft: "500px" }}
+            />{" "}
+          </Link>
+          {localStorage.getItem('user') ?
                         <Nav>
                             <NavDropdown className={classes.user} title={user.username}>
                                 <NavDropdown.Item onClick={logout} >Logout</NavDropdown.Item>

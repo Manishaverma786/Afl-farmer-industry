@@ -84,36 +84,52 @@ const RentMachines = () => {
 
   return (
     <>
-    <div className="container">
-      <div className="row py-4 justify-content-evenly" >
-        <h1 className='text-center border border-1 py-4  shadow p-4 mt-3 mb-3 bg-body roundeds' style={{ marginTop: 100, color: "#172578 " }}>My Products
-        </h1>
+      <div className="container">
+        <div className="row py-4 justify-content-evenly">
+          <div className="col-md-4">
+            <SideBarFarmer />
+          </div>
+        
+        <br></br>
+        <br></br>
+        
         <div>
-        <Link to="/addnewmachine" style={{ textDecoration: 'none' }}>
-            {/* <button
-              className="btn btn-info btn-dark btn-lg"
-              style={{
-                position: "absolute",
-                color: "white",
-                marginBottom: "500px",
-                left: "90%",
-                "-ms-transform": "translate(-50%, -50%)",
-                transform: "translate(-50%, -50%)",
-              }}
+        <Link to="/addnewmachine">
+              <button
+                className="btn btn-info btn-lg"
+                style={{
+                  position: "absolute",
+                  backgroundColor: "#172578",
+                  color: "white",
+                  marginBottom: "500px",
+                  left: "85%",
+                  "-ms-transform": "translate(-50%, -50%)",
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                {" "}
+                Add Machine
+              </button>
+            </Link>
+            </div>
+          <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
+            <h1
+              className="text-center border border-1 p-4  shadow p-3 mb-3 bg-body rounded"
+              style={{ marginTop: 50, color: "#172578 " }}
             >
-              {" "}
-              Add Residue
-            </button> */}
-            <button className="btn btn-outline-dark px-4 py-2 d-flex ms-auto p-2">
-            Add Machine
-            </button>
-          </Link>
+              My Products
+            </h1>
+          </div>
+          <div className="row">
+            <div className="col-md-9 col-sm-6" style={{ marginLeft: 300 }}>
+              <div className="row justify-content-center">
+                {loading ? <Loading /> : <ShowProducts />}
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="row justify-content-center mt-2"> {loading ? <Loading /> : <ShowProducts />}</div>
       </div>
-    </div>
-  </>
-     
+    </>
   );
 };
 

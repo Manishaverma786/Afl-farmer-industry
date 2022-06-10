@@ -1,0 +1,53 @@
+const menuItems = [
+        {
+            text: 'Homepage',
+            icon: <HomeOutlinedIcon  />,
+            path: '/homepagefarmer'
+        },
+        {
+            text: 'Products',
+            icon: <CalendarTodayIcon  />,
+            path: '/buy'
+        },
+        {
+            text: 'Sell Residue',
+            icon: <AddCircleOutlineOutlined />,
+            path: '/sellresidue'
+        },
+        {
+            text: 'Rent Machine',
+            icon: <DriveEtaOutlinedIcon  />,
+            path: '/addnewmachine'
+        },
+        {
+            text: 'Connections',
+            icon: <GroupAddOutlinedIcon  />,
+            path: '/connection'
+        },
+        // {
+        //     text: 'Requests',
+           
+        //     icon: <FavoriteBorderIcon />,
+        //     path: '/requestfarmer'
+        // },
+        {
+            text: 'Settings',
+            icon: <SettingsOutlinedIcon  />,
+            path: '/settings'
+        },
+
+        {
+            text: 'Exit',
+            icon: <ExitToAppRoundedIcon  />,
+            path: '/'
+        },
+    ];
+
+<Link to="/cart">
+                      {" "}
+                      <img
+                        src= {shoppingcarticon}
+                        style={{ width: "30px", textAlign: "right",marginLeft:"500px"}}
+                      />{" "}
+                    </Link>
+

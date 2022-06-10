@@ -5,9 +5,10 @@ import "slick-carousel/slick/slick-theme.css";
 import "./MultiItemCarousel.css";
 import {  MultiData } from "./MultiData";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
+import Button from 'react-bootstrap/Button'
 
 const PreviousBtn = (props) => {
-  // console.log(props);
+  console.log(props);
   const { className, onClick } = props;
   return (
     <div className={className} onClick={onClick}>
@@ -64,9 +65,10 @@ const carouselProperties = {
 
 const MultiItemCarousel = () => {
   return (
-    <div style={{ margin: 10}} className="carousel1">
+    <div style={{ margin: "10px" }} className="carousel1">
       <h1>Agriculture Machines</h1>
       {/* <p>From More Powerfull To Less, Choose The Best With Us.</p> */}
+      <br/>
       <Slider {...carouselProperties}>
         { MultiData.map((item) => (
           <Card item={item} />
