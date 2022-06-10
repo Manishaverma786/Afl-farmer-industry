@@ -19,21 +19,17 @@ function AddNewMachine() {
     let formdata = {
       name: name,
       description: description,
-
       discount: discount,
       rent_price: rent_price,
-
       image: file,
     };
 
     for (const [key, value] of Object.entries(formdata)) {
       formData.append(key, value);
-      console.log(key, value);
     }
 
     let { data } = await axios.post("machines/", formData);
     console.log("data", data);
-    localStorage.setItem("machine_info", JSON.stringify(data));
     history(`/rentmachines`);
   }
   return (
@@ -43,7 +39,6 @@ function AddNewMachine() {
           <SideBarFarmer />
           <Tractor />
         </div>
-
         <div className="col-md-9 mt-5">
           <div className="col-sm-8 offset-sm-2" style={{ margintop: 100 }}>
             <h1 className="py-3">Upload Your Machine Details</h1>

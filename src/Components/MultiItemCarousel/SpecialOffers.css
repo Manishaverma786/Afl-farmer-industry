@@ -48,8 +48,9 @@ button:hover {
 }
 
 .carousel>h1{
-    margin-top: 50px;
-    margin-left: 20px;
+    /* margin-top: 50px;
+    margin-left: 20px; */
+    text-align: center;
     font-family: Abhaya Libre;
     font-weight: 700;
     font-size: 64.715px;
