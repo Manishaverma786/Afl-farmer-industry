@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../api/axios';
 
- 
-const Residue = ({title}) => {
-    
+const MachineResidue = () => {
+
     const [residues, setResidues] = useState([]);
 
     const fetchData = () => {
@@ -11,10 +10,7 @@ const Residue = ({title}) => {
             .then(response => {
                 // console.log("residues list", response.data);
                 setResidues(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-              });
+            });
     }
     const createorder = (id) => {
         axios.post("residue-orders/", {
@@ -54,7 +50,6 @@ const Residue = ({title}) => {
         <>
             <div className="container">
                 <div className="row py-4 justify-content-evenly" >
-                    <h1 className='text-center border border-1 py-4  shadow p-4 mt-3 mb-5 bg-body roundeds' style={{ marginTop: 100, color: "#172578 " }}>{title}</h1>
                     <div className="row justify-content-center">{<ShowResidue />}</div>
                 </div>
             </div>
@@ -62,4 +57,4 @@ const Residue = ({title}) => {
     )
 }
 
-export default Residue;
+export default MachineResidue;

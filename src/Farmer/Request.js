@@ -71,7 +71,7 @@ const Request = () => {
                   Quantity: {data.residue.quantity}
                 </h6>
                 <p class="card-text">{data.customer.name}₹ </p>
-
+                <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
                 <p class="card-text lead fw-bold">{data.residue.price}₹ </p>
                 {data.status === "pending" && (
                   <>

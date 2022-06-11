@@ -3,13 +3,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SpecialOffers.css";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { data } from "./MultiData";
 import { ArrowBackIos, ArrowForwardIos } from "@material-ui/icons";
 import { Rating } from "@material-ui/lab";
 
 const PreviousBtn = (props) => {
-    console.log(props);
+    // console.log(props);
     const { className, onClick } = props;
     return (
         <div className={className} onClick={onClick}>
@@ -28,7 +27,7 @@ const NextBtn = (props) => {
 
 const SpecialOffers = () => {
     return (
-        <div style={{ margin: "10px" }} className="carousel">
+        <div style={{ margin: 10 }} className="carousel">
             <h1 >Special Offers</h1>
             {/* <p  >Cars In Which Your Every Moment Will Be Memorable.Open Your Horizon With Our Manufactured Car.
             </p>
@@ -63,7 +62,7 @@ const Card = ({ item }) => {
         <div
             style={{
                 textAlign: "center",
-                margin: 20,
+                margin: 10,
                 padding: "0 10px",
                 width: "90%",
                 // boxShadow: "0 1px 6px 0 rgb(32 33 36 / 28%)",
