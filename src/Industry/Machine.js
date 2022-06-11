@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton';
-import SideBar from './SideBar';
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 
@@ -27,9 +26,12 @@ const Machine = () => {
     function deleteMachine(id) {
         axios.delete(`/machines/${id}`, {
         }).then((data) => {
-            console.warn(data)
-        })
-        // getProduct();
+            // console.warn(data)
+            alert("Machine Deleted Successfully")
+        }).catch((err) => {
+            let message = typeof err.response !== "undefined" ? err.response.data.message : err.message;
+            console.warn("error", message);
+          });
         navigate(`/machinelist`);
     }
 
@@ -88,9 +90,9 @@ const Machine = () => {
                             <button className="btn btn-outline-dark px-4 py-2" onClick={() => deleteMachine(machines.id)}>
                                 Delete
                             </button>
-                            <NavLink to="/prefillForm" className="btn btn-dark ms-2 px-3 py-2">
+                            <Link to={'/update/'+machines.id} className="btn btn-dark ms-2 px-3 py-2">
                                 Update
-                            </NavLink>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -100,18 +102,14 @@ const Machine = () => {
     }
 
     return (
-        <div>
-            <div className="container py-5 ">
+        <>
+            <div className="container">
                 <div className="row py-4 justify-content-evenly" >
-                    <div className="col-md-3">
-                        <SideBar />
-                    </div>
-                    <div className="col-md-9" style={{ marginLeft: 250 }}>
-                        {loading ? <Loading /> : <ShowProduct />}
-                    </div>
+                    <div className="row justify-content-center"> {loading ? <Loading /> : <ShowProduct />}</div>
                 </div>
             </div>
-        </div>
+        </>
+
     );
 }
 

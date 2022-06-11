@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import './RequestPage.css'
-import axios from '../../api/axios'
+import axios from '../api/axios'
 
-const Request = ({title}) => {
+const MachineRequest = () => {
   
   const [request, setRequest] = useState([])
   const [filter, setFilter] = useState("pending")
@@ -74,7 +73,6 @@ const Request = ({title}) => {
       <div className="container">
         <div className="row py-4 justify-content-evenly" >
           {/* <h1 className='abc'>{title}</h1> */}
-          <h1 className='text-center border border-1 py-4  shadow p-4 mt-3 mb-5 bg-body roundeds' style={{ marginTop: 100, color: "#172578 " }}>{title}</h1>
             <div className="row justify-content-center">{<ShowOrders />}</div>
         </div>
       </div>
@@ -88,4 +86,4 @@ const Request = ({title}) => {
 
  
 
-export default Request;
+export default MachineRequest;
